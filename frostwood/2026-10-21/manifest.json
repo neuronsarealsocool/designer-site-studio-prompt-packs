@@ -1,0 +1,25 @@
+{
+  "pack": "frostwood",
+  "snapshot_date": "2026-10-21",
+  "visibility": "private",
+  "public_media_approval": false,
+  "source_document": "https://docs.google.com/document/d/1O4uzOHqg5GcAvWlNR9Nz0pnvqK3jCOvU/edit",
+  "source_folder": "https://drive.google.com/drive/folders/1mBrFljSMJCJvlsvYYhPqVB9xCA61chSt",
+  "files": [
+    {
+      "file": "Prompts.docx",
+      "bytes": 245535,
+      "sha256": "a2633f4f316e92aaa50911baf3a71d2f5ddea112de2ebb28b103e64023a2c545"
+    },
+    {
+      "file": "assets-20260909T135554Z-1-001.zip",
+      "bytes": 6042596,
+      "sha256": "22ef01247cc1570880bd5e961d4baae76477a1c6b9609b457ec6ac93362e8051"
+    },
+    {
+      "file": "frostwood.zip",
+      "bytes": 4057602,
+      "sha256": "254aa7ce348a98ee0587f1e7942f12ea8ef1a3c01ebdaac898db144b702d6be1"
+    }
+  ]
+}
