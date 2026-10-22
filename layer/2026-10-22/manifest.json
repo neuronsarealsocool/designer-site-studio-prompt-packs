@@ -1,0 +1,42 @@
+{
+  "pack": "layer",
+  "snapshot_date": "2026-10-22",
+  "visibility": "private",
+  "public_media_approval": false,
+  "source_video": "https://www.youtube.com/watch?v=lKQIOiDN2ME",
+  "source_document": "https://docs.google.com/document/d/1h_Bx6WuQOpAi2iuUp0jNxMY7LYsQroNUPqGZ6zjvI7o/edit",
+  "source_folder": "https://drive.google.com/drive/folders/1bVpKNAKOutE6NfxstNA1vKwgwZf28DOY",
+  "notes": "Native Google document preserved as DOCX and Markdown exports; ZIP and PNG downloads retain original bytes and filenames. No downloaded code executed.",
+  "files": [
+    {
+      "file": "assets-20260828T165440Z-1-001.zip",
+      "kind": "original downloaded file",
+      "bytes": 42160925,
+      "sha256": "4d8e22c10b4331b8d0c2f5b3d6fdb8b3ba759f379b93f5eeddac68498ba4f9b5"
+    },
+    {
+      "file": "layer-theme.zip",
+      "kind": "original downloaded file",
+      "bytes": 41932246,
+      "sha256": "8bb0b2ce40d3f13a9fd8708a6c8c3d0ee04f9810bd7d078974545008d8319560"
+    },
+    {
+      "file": "layer-hero-direction (1).png",
+      "kind": "original downloaded file",
+      "bytes": 1742016,
+      "sha256": "5abb73d3fcf3e81823b6821b2e0eb8ea1b4ec3932b39f47cd514332ff59f69cb"
+    },
+    {
+      "file": "ChatGPT - 5.6 Can Now Make Insane WooCommerce Product Websites.docx",
+      "kind": "Google Docs DOCX export",
+      "bytes": 256526,
+      "sha256": "d8998eb776b8c0c9f45d0be472a9442efca27a058646bcb44ed7543ba65cfb88"
+    },
+    {
+      "file": "ChatGPT - 5.6 Can Now Make Insane WooCommerce Product Websites.md",
+      "kind": "Google Docs Markdown export",
+      "bytes": 58264,
+      "sha256": "952ff44b5163c2e29e0bcd67843f3f5ec205766a2509c7c97d0db94b73addc77"
+    }
+  ]
+}
