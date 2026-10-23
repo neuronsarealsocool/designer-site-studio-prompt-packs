@@ -16,3 +16,10 @@ source attribution and existing notices. No API keys or account credentials belo
 The 2026-10-22 snapshot preserves the original asset ZIP, WordPress-theme ZIP and
 hero-reference PNG, plus DOCX and Markdown exports of the native Google prompt
 document. Five file sizes and SHA-256 hashes are recorded in the manifest.
+
+## Horizon Estates
+
+The 2026-10-23 snapshot preserves all 15 original PNGs in their Orange/Purple
+folders and DOCX/Markdown exports of the native Google prompt document. The
+manifest records all 17 sizes/checksums plus image dimensions and alpha-channel
+inspection. No completed theme or code archive was supplied.

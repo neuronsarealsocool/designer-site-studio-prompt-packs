@@ -1,0 +1,190 @@
+{
+  "pack": "horizon-estates",
+  "snapshot_date": "2026-10-23",
+  "visibility": "private",
+  "public_media_approval": false,
+  "source_video": "https://www.youtube.com/watch?v=bpF7Df-GDEQ",
+  "source_folder": "https://drive.google.com/drive/folders/1qmEsYC5dsyoziDAn17v-JPs3qec0f-a8",
+  "source_document": "https://docs.google.com/document/d/1_rd-diJHsyR43OTkHPJtATFUpenTGowO6KDEkARfh0Y/edit",
+  "source_subfolders": {
+    "Orange": "https://drive.google.com/drive/folders/1VJd8wPL8bTwuVOsiRQN0rRXeYcTptkuV",
+    "Purple": "https://drive.google.com/drive/folders/1zfbZZ3NGbKq2KRVB4zl7ObDF-gK1XV1M"
+  },
+  "notes": "15 original PNGs and two exports of one native Google document. No theme/code archive in the inspected folder.",
+  "files": [
+    {
+      "file": "Orange/ChatGPT Image Aug 7, 2026, 11_36_26 AM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 2084247,
+      "sha256": "31748d70ca6d34f02884ad3a79dcad9494801fdb0982ab835464a63604b306e4",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Orange/ChatGPT Image Aug 7, 2026, 12_07_55 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 3051623,
+      "sha256": "c2383fe2c63d5ccbed88f36bb66ed5102d4cffaaf7178c54f727d20ab02ecfbb",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "Orange/ChatGPT Image Aug 7, 2026, 12_30_36 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 1975628,
+      "sha256": "0afcfd787f18e50eec611900086c48ae8530bf75ecbc1cd46ec42c62aa6bff97",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Orange/ChatGPT Image Aug 7, 2026, 12_34_00 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 1796613,
+      "sha256": "290f6aa043ab68b205f4a05f702315035168ea7ca5921fea4581d40f3d555eeb",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Orange/ChatGPT Image Aug 7, 2026, 12_37_35 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 2517878,
+      "sha256": "8f086dd7c2b6845d3e5eae06065a3be6ff03c42a536b03dd51b920cab5d6b49a",
+      "width": 1448,
+      "height": 1086,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Orange/ChatGPT Image Aug 7, 2026, 12_41_53 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 2357740,
+      "sha256": "2fbc9fe27ab32cb59c80e34f3de603f4063147424c52b9fe66b38ff0567acf05",
+      "width": 1448,
+      "height": 1086,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Orange/ChatGPT Image Aug 7, 2026, 12_43_00 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 2582146,
+      "sha256": "a52b776bee20371d339ae595d0855b1992e4717121e23fc496f9897f2c6c54f1",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "Orange/ChatGPT Image Aug 7, 2026, 12_45_22 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 2434506,
+      "sha256": "1de76994d823531bd66452bb85d603d86fff5909bd43db7cba036279e495ccea",
+      "width": 1448,
+      "height": 1086,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Purple/ChatGPT Image Aug 6, 2026, 10_39_15 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 1988599,
+      "sha256": "1c990c88132d56baee8791576917feb09f273af2640fbeee51592d8638ba6a3c",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Purple/ChatGPT Image Aug 6, 2026, 10_43_16 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 2925547,
+      "sha256": "16a1e06620f700d5fb66c18956ee69f13c0b21bb123c194444e5f3f047d0e97e",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "Purple/ChatGPT Image Aug 6, 2026, 11_06_01 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 2339592,
+      "sha256": "1cd9355239f1fc340697e0f530266bcf072d3d329946d8d5cd6f11bf748ab676",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "Purple/ChatGPT Image Aug 6, 2026, 11_19_21 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 1585242,
+      "sha256": "c249ac9408180144d2f0e6e5a3daa3d6905c7a4af76e6857d6244a99d024a751",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Purple/ChatGPT Image Aug 6, 2026, 11_20_26 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 1806319,
+      "sha256": "4761087b978f6cadb9f215e89b2fe0fc03d60cca6d0e8b043909cb5d3dbc0292",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Purple/ChatGPT Image Aug 6, 2026, 11_20_47 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 1796540,
+      "sha256": "e632fc7aad6c467e00886d794007889295f5d89fa1b15ba22ed2ac0a4819dba0",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Purple/ChatGPT Image Aug 6, 2026, 11_20_58 PM.png",
+      "kind": "original downloaded PNG",
+      "bytes": 1820200,
+      "sha256": "e196907914fae48d4c737b16280bdc3477132b11a33d49a84e09e8159ae1ade7",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "alpha_extrema": null
+    },
+    {
+      "file": "Prompt.docx",
+      "kind": "Google Docs DOCX export",
+      "bytes": 33000,
+      "sha256": "fe21c91c13f6978157fab6396d921f38c8637103489cb1856c4ee5b247566a90"
+    },
+    {
+      "file": "Prompt.md",
+      "kind": "Google Docs Markdown export",
+      "bytes": 45423,
+      "sha256": "c0c099cd9919317ddc638c2a10406e51907d06711c087a403909ba9eb3f178d9"
+    }
+  ]
+}
