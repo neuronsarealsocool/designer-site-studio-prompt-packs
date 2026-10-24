@@ -1,0 +1,34 @@
+{
+  "pack": "veyra",
+  "snapshot_date": "2026-10-24",
+  "visibility": "private",
+  "public_media_approval": false,
+  "reference_credit": {
+    "name": "MotionSites.ai",
+    "url": "https://www.motionsites.ai/",
+    "basis": "User identified this as another MotionSites reference."
+  },
+  "upstream_credit": {
+    "author": "Amir Mušić",
+    "url": "https://github.com/amirmushichge/veyra-interactive-car",
+    "license": "MIT; retain LICENSE and THIRD_PARTY_NOTICES.md inside source ZIP"
+  },
+  "source_tag": "v1.0.0",
+  "source_commit": "5779ec0762559b84bd5da3b6ffccf76e747f7587",
+  "source_archive_url": "https://github.com/amirmushichge/veyra-interactive-car/archive/refs/tags/v1.0.0.zip",
+  "inspection": "ZIP CRC passed; all 32 upstream reference-manifest hashes verified; 18 bundled media files. Project not installed or executed. Space Grotesk font is remotely imported and not included.",
+  "files": [
+    {
+      "file": "Pasted text.txt",
+      "kind": "original user-supplied prompt",
+      "bytes": 12241,
+      "sha256": "3641f1abddbe218d572a5c1fe41c4dc4079c2fb15edaf2254b4d839ab4d14d60"
+    },
+    {
+      "file": "veyra-interactive-car-v1.0.0.zip",
+      "kind": "original pinned GitHub source ZIP",
+      "bytes": 23777959,
+      "sha256": "4377a3437f653b9b641833f7ed923f4e91dc5bb8d49a357f67548ab2d2b09668"
+    }
+  ]
+}
