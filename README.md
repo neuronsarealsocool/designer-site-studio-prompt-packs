@@ -23,3 +23,11 @@ The 2026-10-23 snapshot preserves all 15 original PNGs in their Orange/Purple
 folders and DOCX/Markdown exports of the native Google prompt document. The
 manifest records all 17 sizes/checksums plus image dimensions and alpha-channel
 inspection. No completed theme or code archive was supplied.
+
+## Planet Jumping - MotionSites.ai
+
+All credit for the original Planet Jumping prompt/design reference goes to
+MotionSites.ai (https://www.motionsites.ai/), as specified by the user. The
+2026-10-24 snapshot preserves the single original supplied prompt file byte-for-byte.
+Remote media URLs in its text are references, not supplied or backed-up files.
+No fonts, media or runnable HTML were supplied. See manifest for size and checksum.

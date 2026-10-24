@@ -1,0 +1,21 @@
+{
+  "pack": "planet-jumping",
+  "title": "Planet Jumping",
+  "snapshot_date": "2026-10-24",
+  "visibility": "private",
+  "public_media_approval": false,
+  "source_credit": {
+    "name": "MotionSites.ai",
+    "url": "https://www.motionsites.ai/",
+    "basis": "Attribution explicitly provided by the user; preserve all credit for original prompt/design reference."
+  },
+  "supply_status": "One prompt file supplied; six remote media URLs referenced in the text, but no media or font files supplied or downloaded. No built HTML or runnable template supplied.",
+  "files": [
+    {
+      "file": "Pasted text.txt",
+      "kind": "original user-supplied prompt file",
+      "bytes": 24258,
+      "sha256": "d774359dea5ff5b7e2e3a8191229e31eb0f4c07ec1ea527ce4e48a30db7d33e5"
+    }
+  ]
+}
