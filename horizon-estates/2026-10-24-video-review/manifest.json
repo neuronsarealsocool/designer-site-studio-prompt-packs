@@ -1,0 +1,94 @@
+{
+  "source": "https://www.youtube.com/watch?v=bpF7Df-GDEQ",
+  "reviewed_on": "2026-10-24",
+  "duration_seconds": 472.221,
+  "visibility": "private",
+  "public_media_approval": false,
+  "method": "Full auto-generated English transcript exported through browser, plus native browser screenshots at recorded playback positions. No source video download.",
+  "frame_times_seconds": {
+    "intro-0014.png": 13.904593,
+    "build-0340.png": 220.248763,
+    "build-0359.png": 239.15901,
+    "final-0710.png": 429.98,
+    "final-0712.png": 432.15477,
+    "final-0715.png": 434.98,
+    "final-0716.png": 436.048056,
+    "final-0717.png": 437.160424,
+    "final-0720.png": 439.98,
+    "final-0722.png": 442.166077,
+    "final-0724.png": 443.834628,
+    "final-0725.png": 444.98
+  },
+  "files": [
+    {
+      "file": "frames/build-0340.png",
+      "bytes": 144864,
+      "sha256": "5e0cdbfaafb8987bafc440d97685b4f8ad76838de5446ae2cadac72871fcbc45"
+    },
+    {
+      "file": "frames/build-0359.png",
+      "bytes": 145109,
+      "sha256": "34f9678a23b480913789d4ce3dadcf287574485dc1aba1bdb3c359b379c6b1ed"
+    },
+    {
+      "file": "frames/final-0710.png",
+      "bytes": 149597,
+      "sha256": "435c44202e48cf45ab47042468f83749e99d56c831492a43ad7f67da492c6e19"
+    },
+    {
+      "file": "frames/final-0712.png",
+      "bytes": 121082,
+      "sha256": "965c7d1ae4c481bdb424f1676f55ca06c89c02a405883005540f571eb9bccaba"
+    },
+    {
+      "file": "frames/final-0715.png",
+      "bytes": 130057,
+      "sha256": "54bfdb97f54071a21abf3c4567c6fa7c9b18c9f7e54aaf436886d7e63409684d"
+    },
+    {
+      "file": "frames/final-0716.png",
+      "bytes": 128921,
+      "sha256": "1cde7254675e8227361749438461a86e3243b972068d24c25e0f4aed7e06acc4"
+    },
+    {
+      "file": "frames/final-0717.png",
+      "bytes": 129375,
+      "sha256": "e64cb0663f988da8c91488a41738f4fa1e5cb50a2c22d15913a6230bb1b843fd"
+    },
+    {
+      "file": "frames/final-0720.png",
+      "bytes": 142479,
+      "sha256": "5f0ab2dca452914cc6527f02db8194cb47317ba22aa6d31a00915f48157beeeb"
+    },
+    {
+      "file": "frames/final-0722.png",
+      "bytes": 147787,
+      "sha256": "93b1329551de03af65bd745e498b8a9156faa90c2efb897ae9347eb77a962fda"
+    },
+    {
+      "file": "frames/final-0724.png",
+      "bytes": 123622,
+      "sha256": "17330e4dd52406834a666494291ac448dfd9872e6d803b8583c6b57bc1f91baf"
+    },
+    {
+      "file": "frames/final-0725.png",
+      "bytes": 126889,
+      "sha256": "026c5eb620c729e2bb49814425d60acdca9561b59d02991a6d635f12be53c962"
+    },
+    {
+      "file": "frames/intro-0014.png",
+      "bytes": 153147,
+      "sha256": "4466a9ea4a7b96311fc2f80d927f7b5bb476c8a017a89898377ade7f4c0afccf"
+    },
+    {
+      "file": "review-notes.md",
+      "bytes": 6114,
+      "sha256": "bf1d686238921fae55a00674f145e70f8435b307dc98f85625a1d79aed58760b"
+    },
+    {
+      "file": "transcript-auto-en.txt",
+      "bytes": 8752,
+      "sha256": "8b83170eae6b10c34282a63c25218f08c1e0393e86bb37185488760bf9e3fa93"
+    }
+  ]
+}
