@@ -1,0 +1,16 @@
+{
+  "snapshot_date": "2026-10-24",
+  "provenance": "User-reported regression screenshot: hero headline letters masked at ultrawide size. Failure example, not the desired target.",
+  "media_publication_approval": false,
+  "files": [
+    {
+      "path": "codex-clipboard-fe932dc9-ea14-4c4c-a521-bdccd7db1a94.png",
+      "bytes": 5275825,
+      "sha256": "9f5e2e5534d1bf428359ee5db15f9dcd9e9b730192910a078e5818cf4f18f4b6",
+      "dimensions": [
+        3440,
+        1271
+      ]
+    }
+  ]
+}
