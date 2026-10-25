@@ -38,3 +38,11 @@ The 2026-10-24 snapshot preserves the original user-supplied prompt and pinned
 v1.0.0 GitHub source ZIP, including 18 media files, screenshots and upstream license
 notices. MotionSites.ai is credited for the supplied reference; retain the project
 author credit to Amir Mušić. No project code was executed.
+
+## Darrell Wilson method
+
+Credit: Darrel Wilson. The 2026-10-25 snapshot preserves two original note
+attachments and the original coffee-product PNG, plus two clearly marked Replicate
+working adaptations. Original provider wording stays in originals/. In-chat media
+approval and optional WordPress rules apply to the adaptations. No footage supplied
+or generated; no complete video backup or full-video review is claimed.
