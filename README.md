@@ -46,3 +46,10 @@ attachments and the original coffee-product PNG, plus two clearly marked Replica
 working adaptations. Original provider wording stays in originals/. In-chat media
 approval and optional WordPress rules apply to the adaptations. No footage supplied
 or generated; no complete video backup or full-video review is claimed.
+
+## Bart method
+
+Credit: Bart Slodyczka / Barty-Bart. The 2026-10-25 snapshot preserves the original
+repository archive pinned to e05e451ecd1e371536ef3c310fa273e12b98db7a, plus two
+separate Replicate working adaptations. Source archive contains two prompts and a
+tutorial-placeholder SVG, not a finished website or production media.
