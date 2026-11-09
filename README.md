@@ -53,3 +53,10 @@ Credit: Bart Slodyczka / Barty-Bart. The 2026-10-25 snapshot preserves the origi
 repository archive pinned to e05e451ecd1e371536ef3c310fa273e12b98db7a, plus two
 separate Replicate working adaptations. Source archive contains two prompts and a
 tutorial-placeholder SVG, not a finished website or production media.
+
+## Tower Real Estate Videos
+
+The 2026-11-09 snapshot preserves the original user-supplied Choose your floor
+prompt and all 12 direct-source media files (5 PNG, 7 MP4). Font/proxy variants are
+not included. No author or media license was supplied; no ownership is inferred
+from hosting. Private backup is separate from public media approval.
