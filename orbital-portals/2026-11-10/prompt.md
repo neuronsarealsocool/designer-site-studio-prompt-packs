@@ -41,7 +41,8 @@ educational site rather than assuming the prompt is an authoritative data source
 
 The manifest now includes four travel/background MP4s, a next-preview JPEG and a
 logo SVG. Their actual bytes are available on the library host. Verify motion,
-canvas use and endpoints during the build. Font files are not supplied; choose
+canvas use and endpoints during the build. At least one travel clip uses HEVC; check target-browser decoding and prepare
+an approved H.264 derivative if compatibility requires one. Font files are not supplied; choose
 licensed type or a readable system fallback. The logo and any recognizable pixels
 remain unchanged; select branding deliberately rather than assuming it is generic.
 
