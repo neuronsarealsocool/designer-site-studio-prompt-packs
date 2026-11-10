@@ -1,0 +1,117 @@
+{
+  "title": "Coffee product carousel",
+  "snapshot_date": "2026-11-10",
+  "kind": "neutral adapted working backup",
+  "files": [
+    {
+      "path": "archives/package-01.zip",
+      "bytes": 41967568,
+      "sha256": "2b32f565e557b02389c3f9ae8836c63de5c4eade813ada1e2f06920b587dac37"
+    },
+    {
+      "path": "archives/package-02.zip",
+      "bytes": 41991737,
+      "sha256": "68476fa18a2be0cfff80105741ac5d9b3ff675194d4e1ddd8e6a44abed9184c8"
+    },
+    {
+      "path": "assets.json",
+      "bytes": 4454,
+      "sha256": "41e04254ee151138b8177aefa1fb11315a8df9cf3730e150959a5ca7693e1ae2"
+    },
+    {
+      "path": "documents/prompt-document-01.docx",
+      "bytes": 256238,
+      "sha256": "3717e0e4bea616c4f765de17cb937ad3539f0c42307ef46b39fcd6b6d9619994"
+    },
+    {
+      "path": "media/03c191e58c2741.jpg",
+      "bytes": 732587,
+      "sha256": "e6f37fcabf43d73d32693b57989171b9f6a10f5862686162c30a7b32418cb6ea"
+    },
+    {
+      "path": "media/0d762ddc67f741.png",
+      "bytes": 4606640,
+      "sha256": "2514c8be71e7c0acdc6f34e0bef993c0b1482e43d1c5464b923729e934377638"
+    },
+    {
+      "path": "media/0daa40b0d49544.png",
+      "bytes": 4245472,
+      "sha256": "1dc4a439213a357199974ee165552a0c328c73fb33e334d337ba052924bb78fc"
+    },
+    {
+      "path": "media/1a3a5c869b0243.png",
+      "bytes": 4930475,
+      "sha256": "fde7c33b53c6411ad69498e143ecfffeafc6f5b05f7e7835c929102e63cc1039"
+    },
+    {
+      "path": "media/2d82ae03b82949.png",
+      "bytes": 1824258,
+      "sha256": "72514b1f72e908598a7dbc62218af6081b4c305f23fd3471e9c165f600d0bfe4"
+    },
+    {
+      "path": "media/375cd68a5a0a42.jpg",
+      "bytes": 1499855,
+      "sha256": "f0394f4e903ee1e80c220236700a5c7e0fe2b7aa2b66a4293ddd101ee0f15b21"
+    },
+    {
+      "path": "media/3f3be5b886924f.png",
+      "bytes": 1826496,
+      "sha256": "a999a9bc4606bebd196c8c0c79bd45d4e163a88c805abfae4863763477603288"
+    },
+    {
+      "path": "media/6312e08d7f7641.png",
+      "bytes": 5112326,
+      "sha256": "30b83a81f2c10dbe6af530da7b113b0f330556acdd64d4793338711b0cf1f9b3"
+    },
+    {
+      "path": "media/829205e4ca764d.png",
+      "bytes": 1209696,
+      "sha256": "796b0599a185d4e32091704662ff262c5088d8b73755e8439db2fe6fab7483bc"
+    },
+    {
+      "path": "media/9f43ed877a7940.png",
+      "bytes": 5554900,
+      "sha256": "e994e9de9f35669c2db1f2dbdf74137a6957261c315e311fc073b91f5b9baf16"
+    },
+    {
+      "path": "media/a7269c37926f4e.jpg",
+      "bytes": 1081554,
+      "sha256": "e009adc02fa8add0b588a3087a992bfcbd4c7d1cf40a6283fd83ed6e1c0a6aea"
+    },
+    {
+      "path": "media/c1dea116eef44f.png",
+      "bytes": 2404587,
+      "sha256": "6866f06e965f70bc4d9d06d501ed559573ea9af72df6bf79a700879e5df040c5"
+    },
+    {
+      "path": "media/c24d8234b6bd47.png",
+      "bytes": 1742016,
+      "sha256": "5abb73d3fcf3e81823b6821b2e0eb8ea1b4ec3932b39f47cd514332ff59f69cb"
+    },
+    {
+      "path": "media/cf53b1e010f54c.png",
+      "bytes": 2010738,
+      "sha256": "90072da6b56bc7d65d6c8379e6da321e05106109545046473205b0afc1b563ef"
+    },
+    {
+      "path": "media/e77a25d974ab4a.png",
+      "bytes": 5111246,
+      "sha256": "e12271364b22d802e2491e4f666f5503b6b1fdd1592868cb20a33ddcfc76b36c"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 5840,
+      "sha256": "57d4fd4cbeee56a1b6474b7c43eb6064bae112b5865fbf526af383e54d8e02b0"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.md",
+      "bytes": 58186,
+      "sha256": "786bebeb14850abcb76e1fce870d731feb973f00fbbe656d92c44e52012d0cea"
+    },
+    {
+      "path": "README.md",
+      "bytes": 509,
+      "sha256": "c04dd3ba7df2208cee90e461826e3ec05a7e5871e3ee2c68df9e1fbf98de978f"
+    }
+  ]
+}

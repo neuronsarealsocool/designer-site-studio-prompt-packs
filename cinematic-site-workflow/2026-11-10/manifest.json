@@ -1,0 +1,47 @@
+{
+  "title": "Cinematic site workflow",
+  "snapshot_date": "2026-11-10",
+  "kind": "neutral adapted working backup",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 373,
+      "sha256": "73c426e22ff87c336dbeeacd61c990094886f1f7f263d768d536444360b1cdd8"
+    },
+    {
+      "path": "media/3d806d062e1143.png",
+      "bytes": 80937,
+      "sha256": "24b4d046b230fc57db4ffc86729d2f8d6ebaed421129322a3c73c4a34459760d"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 6742,
+      "sha256": "d50c39eb68514d3d0d0e42981fd448eed9766d2294cad57465f73b8a4f1abbe1"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.md",
+      "bytes": 30613,
+      "sha256": "2bf811a552a1cc5fdb4d61f7d510f7ea3fee6ce594d41148f9c06ca0afd50bb7"
+    },
+    {
+      "path": "prompts/detailed-prompt-02.md",
+      "bytes": 14740,
+      "sha256": "4ead7e324334f6b78bf1710e1134a81136fa7b287246af9d39e581c553307c6b"
+    },
+    {
+      "path": "prompts/detailed-prompt-03.md",
+      "bytes": 29701,
+      "sha256": "caa932d545ea624ec20a1c97ce7fabd73b9928d35ea6a552693fc896817b5be4"
+    },
+    {
+      "path": "prompts/detailed-prompt-04.md",
+      "bytes": 14236,
+      "sha256": "86929cd18d99c64a2f4270c40707ef139dcb3dceb92f4c0f2f7ae2866d084ae4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 509,
+      "sha256": "93e15adce3cd37655b5704b75912680728f8a7f1a960cff7248a34f33f6839e9"
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+Review transcript
+Language: en
+Captions: auto-generated
+
+[0:00] Hey, so I just built this website using
+[0:02] ChatGPT 5.6 and I wanted to share it
+[0:05] with you because this came out really
+[0:07] really clean. This is a luxury real
+[0:10] estate website with a parallax [music]
+[0:12] effect. You have this huge house between
+[0:15] the clouds. The [music] text moves
+[0:17] behind it and the whole page opens up as
+[0:19] I scroll. Then the text fills in, the
+[0:22] properties come up, and the same style
+[0:24] continues all the way to the bottom.
+[0:27] And the whole thing feels like one
+[0:28] website, you know, [music] like it
+[0:30] doesn't feel like ChatGPT made like a
+[0:31] very nice first section and then just
+[0:34] gave up on everything else underneath
+[0:36] it. The best part is that it's running
+[0:38] on WordPress. I can actually change the
+[0:40] text, the images [music] inside
+[0:42] Gutenberg and publish the whole thing
+[0:45] like a normal website. So the reason I
+[0:47] wanted to share this video [music] and
+[0:48] make this video is because I wanted to
+[0:50] show you how I'm actually using ChatGPT
+[0:53] 5.6 for web design. Because I've built
+[0:56] over 100 websites and a website like
+[0:59] this would normally involve a designer,
+[1:02] a front-end developer, someone who
+[1:04] understands animation, and then someone
+[1:06] with a WordPress developer who has to
+[1:08] put everything all together. But with
+[1:10] ChatGPT 5.6, I could do all of this in
+[1:13] one place. I gave it like the reference
+[1:16] and the images and then I just had to
+[1:17] keep prompting until the site looked
+[1:19] right and worked inside WordPress. By
+[1:22] the way, I made the reference and all
+[1:24] these images using ChatGPT first. So
+[1:27] before you even open Codex, make sure
+[1:30] you have the visual reference and the
+[1:31] images that you want to use. Keep them
+[1:33] ready inside your project folder. That
+[1:36] gives ChatGPT something specific to
+[1:38] build from instead of asking it to guess
+[1:40] like the entire design. This might sound
+[1:42] like a lot, but there are really only
+[1:45] three parts to this. So first part is we
+[1:48] give ChatGPT 5.6 the reference and the
+[1:50] images, then we let it build the site
+[1:53] and clean up everything that looks
+[1:55] wrong. And finally, we turn the finished
+[1:57] site into a WordPress theme [music] that
+[1:59] we can actually edit. Okay, so let's do
+[2:02] this. So, the first thing I did was
+[2:05] create a project folder.
+[2:07] Inside it, I added the reference of what
+[2:10] I want, like the main house, the
+[2:13] mountains, the clouds, the property
+[2:15] image, all of these things. This makes a
+[2:18] massive difference because if you just
+[2:20] say, "Build me a premium real estate
+[2:22] website," ChatGPT still has to guess
+[2:24] what premium means. But, the reference
+[2:27] gives it something real to work with.
+[2:29] So, from here, I opened my project
+[2:32] folder into CodeX, selected ChatGPT 5.6,
+[2:36] and I pasted this prompt.
+[2:38] Now, the prompt might look long, but
+[2:40] it's pretty simple if I break it down.
+[2:42] For example, here I am basically telling
+[2:44] it to study the images and build a
+[2:47] high-end real estate website called
+[2:50] Architectural Landscape.
+[2:52] Then, I told it to use warm, orange, and
+[2:55] golden colors. I made the page move
+[2:57] smoothly and blend the sections without
+[3:00] weird gaps between the images. And
+[3:03] finally, I asked for a WordPress block
+[3:05] theme with editable text, buttons, and
+[3:09] images.
+[3:10] So, this is what the full prompt is
+[3:12] saying.
+[3:13] The rest covers like mobiles,
+[3:15] performance, and the finished files. I
+[3:18] will leave the entire prompt in the
+[3:19] description. I will also leave the
+[3:21] design reference, all the assets, and
+[3:23] the finished code so that you can
+[3:25] download everything and try the exact
+[3:28] build for yourself. So, once I send it
+[3:30] to ChatGPT 5.6, I looked through the
+[3:34] images and I started building. I gave it
+[3:36] a few minutes, and this is what it came
+[3:39] back with. And honestly, this already
+[3:42] looks pretty good. I like that the house
+[3:46] sits in middle of the headline. I like
+[3:49] that text goes behind it so that the
+[3:51] house feels like a part of the page. So,
+[3:53] when I scroll, the clouds, the house,
+[3:55] the background, they all move at
+[3:58] slightly different speeds, if you can
+[4:00] see. And I feel like that looks cool,
+[4:01] because that gives the page a lot more
+[4:04] depth. The orange color also carries
+[4:06] through the property cards, the lighter
+[4:09] sections, and the darker sections at the
+[4:11] bottom. Now, I did not just take the
+[4:14] first version, and I did not call that
+[4:16] finished. There were places where the
+[4:18] images did not blend properly. Like one
+[4:21] cloud covered the house a little too
+[4:24] much. The mobile view needed a whole lot
+[4:26] of clean up. So, what I did was I took a
+[4:29] screenshot of this, and I gave it back
+[4:32] to ChatGPT, and I told it exactly what
+[4:35] looked wrong.
+[4:36] So, this is basically how I use it. I
+[4:39] find one thing that feels off. I ask it
+[4:42] to fix that one thing. And then, after a
+[4:44] couple of passes, this was the final
+[4:46] end-to-end version that I got. Now, we
+[4:49] need to get WordPress. So, I [music]
+[4:52] went back to ChatGPT, and I said, "Turn
+[4:56] the website into WordPress block theme.
+[4:59] Keep the design and movement. Make the
+[5:01] content editable in Gutenberg, and give
+[5:03] me an installable zip file." So, it
+[5:06] created the theme, packaged it, and gave
+[5:08] me a zip file.
+[5:10] Then, I opened WordPress, went to
+[5:12] appearance, then clicked on themes,
+[5:15] clicked on add new, and I uploaded the
+[5:18] zip file.
+[5:19] Once the theme was active, the same
+[5:22] website was running inside WordPress.
+[5:25] Now, let me stay here for a second,
+[5:27] because this is the part that makes the
+[5:29] whole workflow useful.
+[5:32] So, inside Gutenberg, I can click on the
+[5:35] main headline, and rewrite it like
+[5:37] normal text. I can select the house
+[5:40] image, open the image control, and
+[5:42] replace it with something else from the
+[5:44] media library.
+[5:46] The property section works the same way.
+[5:48] >> [music]
+[5:48] >> I can change the property name, the
+[5:50] location, the description, the image. I
+[5:53] can also update these numbers, change
+[5:55] the button text, and add a different
+[5:58] link. Then I click update. I open the
+[6:01] live website again,
+[6:02] >> [music]
+[6:03] >> and all those changes are there already.
+[6:06] The movement still works, the sections
+[6:08] still flow properly, and I did not have
+[6:10] to open a code file to make these edits.
+[6:14] So, if a client wants to replace a
+[6:16] property, or they want to change like
+[6:19] the headline, or create an image later,
+[6:21] they can do it from WordPress directly
+[6:23] from the dashboard like they normally
+[6:25] would. So, this is what makes this
+[6:28] actually usable after AI finishes
+[6:31] building it. It does not stay trapped on
+[6:33] my computer. One quick thing before I
+[6:35] show you the final site, a website like
+[6:37] this uses big images and a lot of
+[6:40] movement, right? As you can see.
+[6:42] So, it can feel smooth locally, but this
+[6:45] can very quickly become very heavy on
+[6:47] WordPress. So, this is where I would use
+[6:50] Airlift. It is a WordPress speed
+[6:52] optimization plugin that optimizes the
+[6:55] site's assets so that the pages like
+[6:57] this can stay smooth after they go live.
+[7:00] I will also leave a link to Airlift in
+[7:03] the description as well so that you can
+[7:05] try it out for yourself. Okay, so here
+[7:07] is the final website. We start with the
+[7:10] house between the clouds, as you know
+[7:12] already, and as I scroll the text
+[7:14] disappears behind it, and the next
+[7:16] section comes [music] up without a
+[7:17] heartbreak.
+[7:19] Then the statement fills in, the
+[7:21] properties come up, and we move through
+[7:23] the rest of the page, and again all of
+[7:25] this is editable in WordPress. So, this
+[7:29] is how I'm using ChatGPT 5.6 [music]
+[7:31] as a WordPress web designer. I give it a
+[7:34] strong reference and real assets, then I
+[7:38] guide it by looking at the result. The
+[7:39] complete prompt, the reference, the
+[7:41] assets, the code, [music]
+[7:43] and the WordPress theme are all linked
+[7:45] in the description below. Try it out for
+[7:47] yourself and let me know what you end up
+[7:49] building. I will see you in the next
+[7:51] video.

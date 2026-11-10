@@ -1,0 +1,197 @@
+{
+  "title": "Architectural landscape journey",
+  "snapshot_date": "2026-11-10",
+  "kind": "neutral adapted working backup",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 4594,
+      "sha256": "def9836173227b292761d558d9d8ac98bd78d5da04dc1778d655f02b646b34f9"
+    },
+    {
+      "path": "documents/prompt-document-01.docx",
+      "bytes": 30807,
+      "sha256": "caefacb545ebfb8974effed4c8bc74fe3af042f2a091a4082eb0d0ac06a6c965"
+    },
+    {
+      "path": "media/478ee3d4339743.png",
+      "bytes": 1796613,
+      "sha256": "290f6aa043ab68b205f4a05f702315035168ea7ca5921fea4581d40f3d555eeb"
+    },
+    {
+      "path": "media/638cde1297ed4d.png",
+      "bytes": 2925547,
+      "sha256": "16a1e06620f700d5fb66c18956ee69f13c0b21bb123c194444e5f3f047d0e97e"
+    },
+    {
+      "path": "media/6926fbdb9b8449.png",
+      "bytes": 1806319,
+      "sha256": "4761087b978f6cadb9f215e89b2fe0fc03d60cca6d0e8b043909cb5d3dbc0292"
+    },
+    {
+      "path": "media/738bfec26aa540.png",
+      "bytes": 1796540,
+      "sha256": "e632fc7aad6c467e00886d794007889295f5d89fa1b15ba22ed2ac0a4819dba0"
+    },
+    {
+      "path": "media/7b353ebb7d394b.png",
+      "bytes": 2434506,
+      "sha256": "1de76994d823531bd66452bb85d603d86fff5909bd43db7cba036279e495ccea"
+    },
+    {
+      "path": "media/9295d44f7eb443.png",
+      "bytes": 2582146,
+      "sha256": "a52b776bee20371d339ae595d0855b1992e4717121e23fc496f9897f2c6c54f1"
+    },
+    {
+      "path": "media/9eefd780a20a4b.png",
+      "bytes": 3051623,
+      "sha256": "c2383fe2c63d5ccbed88f36bb66ed5102d4cffaaf7178c54f727d20ab02ecfbb"
+    },
+    {
+      "path": "media/a0e7796bbee046.png",
+      "bytes": 1975628,
+      "sha256": "0afcfd787f18e50eec611900086c48ae8530bf75ecbc1cd46ec42c62aa6bff97"
+    },
+    {
+      "path": "media/c2b976f10c4046.png",
+      "bytes": 2357740,
+      "sha256": "2fbc9fe27ab32cb59c80e34f3de603f4063147424c52b9fe66b38ff0567acf05"
+    },
+    {
+      "path": "media/cad0103ea5314a.png",
+      "bytes": 2517878,
+      "sha256": "8f086dd7c2b6845d3e5eae06065a3be6ff03c42a536b03dd51b920cab5d6b49a"
+    },
+    {
+      "path": "media/cae5c4950c4342.png",
+      "bytes": 1988599,
+      "sha256": "1c990c88132d56baee8791576917feb09f273af2640fbeee51592d8638ba6a3c"
+    },
+    {
+      "path": "media/d5c4b6652bff48.png",
+      "bytes": 2339592,
+      "sha256": "1cd9355239f1fc340697e0f530266bcf072d3d329946d8d5cd6f11bf748ab676"
+    },
+    {
+      "path": "media/e71fd118641c4e.png",
+      "bytes": 1585242,
+      "sha256": "c249ac9408180144d2f0e6e5a3daa3d6905c7a4af76e6857d6244a99d024a751"
+    },
+    {
+      "path": "media/f1d211e1be9443.png",
+      "bytes": 2084247,
+      "sha256": "31748d70ca6d34f02884ad3a79dcad9494801fdb0982ab835464a63604b306e4"
+    },
+    {
+      "path": "media/f429b9ec21a340.png",
+      "bytes": 1820200,
+      "sha256": "e196907914fae48d4c737b16280bdc3477132b11a33d49a84e09e8159ae1ade7"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 6500,
+      "sha256": "207a5c711455a56734a6e07a2385bad5a1433fb7ac52f1c3e632cae973c6f83a"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.md",
+      "bytes": 45551,
+      "sha256": "e075a7b86fa3f64f429442c0c2d4cfa832d308d8fdd1d63da9f3345514ae585e"
+    },
+    {
+      "path": "prompts/detailed-prompt-02.md",
+      "bytes": 3074,
+      "sha256": "e220461c2fbb2027ab436001ea1703850f42b42f04c06fc4332168f761af382c"
+    },
+    {
+      "path": "prompts/detailed-prompt-03.md",
+      "bytes": 4349,
+      "sha256": "140aa4491f90de147ec71858c3271a343b6e3ca6b3996a5c5a6df9b601f54ae6"
+    },
+    {
+      "path": "prompts/detailed-prompt-04.md",
+      "bytes": 5817,
+      "sha256": "b94e044ca37e4af82e2fdf924d6da1fd00b38b09ef8a182de9200f2cd562046a"
+    },
+    {
+      "path": "prompts/detailed-prompt-05.txt",
+      "bytes": 8940,
+      "sha256": "3a02e995a468cf817118f86c2c9376b12be2fdc8d8115da800bcf9de3eef0d50"
+    },
+    {
+      "path": "README.md",
+      "bytes": 517,
+      "sha256": "19eaf58319d72c9c66f6defb2c3cecfa8082be7460bd760d61833b7d2c23c55f"
+    },
+    {
+      "path": "support/reference-01.png",
+      "bytes": 4468171,
+      "sha256": "a8a9d4a090dce8a89247ec82183fd1df1fc7051fce9b3afa8f8ba104d2e97eae"
+    },
+    {
+      "path": "support/reference-02.png",
+      "bytes": 5275825,
+      "sha256": "9f5e2e5534d1bf428359ee5db15f9dcd9e9b730192910a078e5818cf4f18f4b6"
+    },
+    {
+      "path": "support/reference-03.png",
+      "bytes": 144864,
+      "sha256": "5e0cdbfaafb8987bafc440d97685b4f8ad76838de5446ae2cadac72871fcbc45"
+    },
+    {
+      "path": "support/reference-04.png",
+      "bytes": 145109,
+      "sha256": "34f9678a23b480913789d4ce3dadcf287574485dc1aba1bdb3c359b379c6b1ed"
+    },
+    {
+      "path": "support/reference-05.png",
+      "bytes": 149597,
+      "sha256": "435c44202e48cf45ab47042468f83749e99d56c831492a43ad7f67da492c6e19"
+    },
+    {
+      "path": "support/reference-06.png",
+      "bytes": 121082,
+      "sha256": "965c7d1ae4c481bdb424f1676f55ca06c89c02a405883005540f571eb9bccaba"
+    },
+    {
+      "path": "support/reference-07.png",
+      "bytes": 130057,
+      "sha256": "54bfdb97f54071a21abf3c4567c6fa7c9b18c9f7e54aaf436886d7e63409684d"
+    },
+    {
+      "path": "support/reference-08.png",
+      "bytes": 128921,
+      "sha256": "1cde7254675e8227361749438461a86e3243b972068d24c25e0f4aed7e06acc4"
+    },
+    {
+      "path": "support/reference-09.png",
+      "bytes": 129375,
+      "sha256": "e64cb0663f988da8c91488a41738f4fa1e5cb50a2c22d15913a6230bb1b843fd"
+    },
+    {
+      "path": "support/reference-10.png",
+      "bytes": 142479,
+      "sha256": "5f0ab2dca452914cc6527f02db8194cb47317ba22aa6d31a00915f48157beeeb"
+    },
+    {
+      "path": "support/reference-11.png",
+      "bytes": 147787,
+      "sha256": "93b1329551de03af65bd745e498b8a9156faa90c2efb897ae9347eb77a962fda"
+    },
+    {
+      "path": "support/reference-12.png",
+      "bytes": 123622,
+      "sha256": "17330e4dd52406834a666494291ac448dfd9872e6d803b8583c6b57bc1f91baf"
+    },
+    {
+      "path": "support/reference-13.png",
+      "bytes": 126889,
+      "sha256": "026c5eb620c729e2bb49814425d60acdca9561b59d02991a6d635f12be53c962"
+    },
+    {
+      "path": "support/reference-14.png",
+      "bytes": 153147,
+      "sha256": "4466a9ea4a7b96311fc2f80d927f7b5bb476c8a017a89898377ade7f4c0afccf"
+    }
+  ]
+}

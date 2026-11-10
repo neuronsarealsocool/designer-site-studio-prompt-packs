@@ -1,0 +1,42 @@
+{
+  "title": "Desktop and mobile workflow",
+  "snapshot_date": "2026-11-10",
+  "kind": "neutral adapted working backup",
+  "files": [
+    {
+      "path": "archives/package-01.zip",
+      "bytes": 13807,
+      "sha256": "b5476f8b68b2ba10c96ce015f65d7901f0713d1b756760ea2f6190f7abf90343"
+    },
+    {
+      "path": "assets.json",
+      "bytes": 367,
+      "sha256": "ec57035654679bff9faf006fffe7f73622cd67d8303e5281e2d9fed6262690c9"
+    },
+    {
+      "path": "media/0109cd52e5fb42.svg",
+      "bytes": 751,
+      "sha256": "b312990faacfd0208880b80ab3c1656aade4f1efa4a707644b162e648fcb7b7f"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 5935,
+      "sha256": "4599d0de25608b4af72f30ffc36720bf6641bc410614f05ecdc5947d9f714c11"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.md",
+      "bytes": 19436,
+      "sha256": "46b90c3d2bbcede43e90bad1943d60d73564dc53fa1269b5d7470180e9d27917"
+    },
+    {
+      "path": "prompts/detailed-prompt-02.md",
+      "bytes": 6791,
+      "sha256": "9765ad995134c71586f3cf7b70b4b35cb9375fa7cb82e119a535db56cdcd6ff4"
+    },
+    {
+      "path": "README.md",
+      "bytes": 513,
+      "sha256": "be48200353ae12e2b14e912eba8000047a42cc5be0bfdb345f91efd88048d01a"
+    }
+  ]
+}
