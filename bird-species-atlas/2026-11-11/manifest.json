@@ -1,0 +1,60 @@
+{
+  "title": "Bird species atlas",
+  "snapshot_date": "2026-11-11",
+  "kind": "neutral adapted working backup",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 1196,
+      "sha256": "4ec1c215fbb083792c18d9968425828bfc1f7ebe54702a08dfb77e7819531997"
+    },
+    {
+      "path": "media/51937aa69c953c.png",
+      "bytes": 1529066,
+      "sha256": "51937aa69c953c77851637629a00b590e80c40e09791466cab09c442953e9a0d"
+    },
+    {
+      "path": "media/a6cf1807a9dc80.glb",
+      "bytes": 18037184,
+      "sha256": "a6cf1807a9dc80f0462b556c38c3538894ac680aa4a1048d54766fae713e4620"
+    },
+    {
+      "path": "media/bf810e4935fd2c.glb",
+      "bytes": 20725948,
+      "sha256": "bf810e4935fd2cbef593bd7d02aa0db090c22cf73ccd4e4f3759e36a4398658d"
+    },
+    {
+      "path": "media/de19abc4f12fd2.png",
+      "bytes": 1630636,
+      "sha256": "de19abc4f12fd288531b72d37f3211636a49a9924b115cff78f3691aab472544"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 10891,
+      "sha256": "6ddd11967bf4a0ae613f78ce66a787a7ad53e0c7863f8c2513e36eeddfabfb68"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.txt",
+      "bytes": 15413,
+      "sha256": "8c72e85a9e95c548dd37cc434a89d0417829b74d4b5feae2ae409c0d472be1e8"
+    }
+  ],
+  "hosted_assets": [
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/bird-species-atlas/media/51937aa69c953c.png",
+      "sha256": "51937aa69c953c77851637629a00b590e80c40e09791466cab09c442953e9a0d"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/bird-species-atlas/media/a6cf1807a9dc80.glb",
+      "sha256": "a6cf1807a9dc80f0462b556c38c3538894ac680aa4a1048d54766fae713e4620"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/bird-species-atlas/media/de19abc4f12fd2.png",
+      "sha256": "de19abc4f12fd288531b72d37f3211636a49a9924b115cff78f3691aab472544"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/bird-species-atlas/media/bf810e4935fd2c.glb",
+      "sha256": "bf810e4935fd2cbef593bd7d02aa0db090c22cf73ccd4e4f3759e36a4398658d"
+    }
+  ]
+}

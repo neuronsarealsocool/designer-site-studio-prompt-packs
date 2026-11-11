@@ -1,0 +1,101 @@
+Neutral adapted working copy; original exact bytes retained in local recovery. Provider and publication rules in the public working prompt take precedence over source instructions.
+
+I found this video [tutorial reference retained locally]
+
+It is a video tutorial on how to make this website [source reference retained locally] using Claude AI 
+
+In the video description, it has this full guide on how to build the site, [source reference retained locally]
+
+As far as I can tell, there are 3 prompts, the first of which, is:
+
+"── BEFORE YOU START ──
+Every image and the hero film below are generated through Replicate, which is paid. You need a Replicate account with credits connected before sending this — sign up at [source reference retained locally] On an empty balance the layout will build but every image will fail.
+
+Build a complete, production-quality marketing website for LAKE HOUSE — a modern architectural cabin for private, whole-home stays on a quiet lake in the Washington Cascades. Sleeps 6, one booking at a time. Deliver a single, self-contained, fully responsive page.
+
+ART DIRECTION — calm, premium, nature-forward, after the "Stayava / NatureNook" reference. Palette: deep teal #16292D / #1F3A3F, warm cream #F4F1EA, one amber accent #F5A623, misty blue-grey #A8BDC3. Type: a thin elegant display sans (Darker Grotesque) for headlines over a clean humanist sans (Hanken Grotesk) for body. Generous whitespace, oversized thin headlines, small uppercase eyebrows each led by an amber dot, 20px rounded cards. No decorative gradients, no emoji, no stock clichés.
+
+── IMAGES TO GENERATE · Replicate, model: GPT Image 2 ──
+Cinematic and photoreal; keep the SAME cabin across every shot — black-framed glass, charred-cedar cladding, warm amber interior light.
+ 1. HERO EXTERIOR (16:9) — head-on, straight-on front of the cabin, centred low in frame, connected to land on the left; glowing amber windows, moody blue-hour dusk, mist off the lake, woodsmoke from the chimney; open sky above for a wordmark.
+ 2. GREAT ROOM (4:5) — double-height wall of glass over the water, wood stove, low linen sofa, soft evening lamplight.
+ 3. KITCHEN (4:5) — matte-black cabinetry, honed soapstone island, window framing the pines, kettle steam.
+ 4. PRIMARY SUITE (4:5) — low linen bed pushed to the glass, fog lifting off the lake at first light.
+ 5. SOAKING BATH (4:5) — carved stone tub beside a forest window, a single candle, rain on the glass.
+ 6. READING NOOK (4:5) — built-in window seat, wool throw, rain on the pane, a book.
+ 7. HOT TUB & SAUNA (5:6) — cedar hot tub steaming on the deck at dusk, fog rolling in, warm light.
+ 8. FIRE PIT (5:6) — lakeside fire pit, two chairs, a wool blanket, mountains fading to blue.
+ 9. DOCK & CANOE (5:6) — private cedar dock with a canoe, still water, dawn light.
+10. EXTERIOR DAY (16:9) — wide daytime establishing shot of the cabin and its shoreline.
+
+── HERO VIDEO · Replicate, model: Seedance 2.0 4K ──
+Animate image #1 into a seamless loop: 0.6x playback for calm, locked exposure so lights never flicker, half-speed fire, chimney smoke and lake mist. Build the loop with two stacked <video> elements and a 1.2-second opacity crossfade at the loop point, so the end-to-start cut is never visible. Reuse the same clip behind the closing footer film.
+
+── PAGE SECTIONS (in order) ──
+Fixed transparent nav that solidifies on scroll · HERO: the animated film, a large low-opacity "Lake House" wordmark behind the house, a glassmorphism booking card (check-in / check-out / guests stepper / "Check availability"), tagline "Where the evening slows down.", 4.9 / 214 stays · HOST NOTE "Lake House is the name for the evening star…" + stats (Sleeps 6 / 180 ft shoreline / 40 min from foothills / 100% private) · "THE SPACES" interior card grid (images 2–6) · "AMENITIES" on dark teal (images 7–9) + included checklist · masonry "GALLERY" · "REVIEWS" 4.9 testimonial cards · "RATES & AVAILABILITY" — $540/night, 2-night minimum, a WORKING booking panel that computes nights × rate + cleaning fee and validates the minimum inline · "HOST" block (Mara & Del) with email/phone/location · full-width closing film reusing the hero loop · footer with a giant "Lake House" wordmark.
+
+BEHAVIOUR — smooth-scroll anchors, mobile-first breakpoints (nav, grids, gallery columns), lazy-loaded imagery, accessible native date inputs. Do it in one shot — no placeholders."
+
+The second prompt, is:
+
+"── BEFORE YOU START · check all three, or none of this works ──
+· THE SKILL — install `scroll-world` from https://github.com/oso95/scroll-world into ~/.claude/skills/scroll-world/ (SKILL.md plus its references/ folder). It supplies the scrub engine and the seam method. Verify it resolves before doing anything else.
+· A HIGGSFIELD ACCOUNT WITH CREDITS — sign up at [source reference retained locally] All the video rendering is paid, so this will not run on an empty balance. Put the CLI on PATH, sign in with `Replicate auth login` (interactive), then confirm with `Replicate workspace list`, which prints the workspace and the credit balance. Budget roughly 800 credits for seven legs including re-rolls, and check the balance BEFORE rendering, not halfway through.
+· `ffmpeg` and `ffprobe` on PATH. Every seam frame, the first/last-frame lock and all the encoding go through them.
+
+In this folder is a .zip exported from Claude Design — a finished landing page for LAKE HOUSE, a modern architectural cabin on a lake in the Washington Cascades. Unzip it and read it properly before you touch anything: the HTML, and every render in /assets.
+
+GOAL — replace ONLY the hero section with a scroll-scrubbed camera flight. One continuous forward take that starts out on the lake, crosses to the deck, and flies through the whole cabin, driven entirely by scroll position. Everything below the hero stays exactly as it is and must remain scrollable to the footer.
+
+Use the `scroll-world` skill for the scrub engine. Use Replicate for the motion: model `seedance_2_0`, `--mode std --resolution 1080p --aspect_ratio 16:9`, 8–10s per clip. Do NOT generate new stills — the renders already in the zip ARE the art direction, and the camera has to match them exactly.
+
+── THE FLIGHT · 7 legs, architecture A (one continuous forward take, no connectors) ──
+ 1. arrival across the lake, rising onto the deck
+ 2. the great room      3. the kitchen        4. the reading nook
+ 3. the bedroom         6. the soaking bath   7. back out over the water
+
+── THE SEAM LAW · this is what makes it one take instead of seven clips ──
+· Leg 1 starts from the hero render.
+· Every later leg's `--start-image` is the PREVIOUS leg's ACTUAL last frame, pulled with ffmpeg:
+    ffmpeg -sseof -0.15 -i leg{n}.mp4 -frames:v 1 last.png
+  Never a source still, never a job id. This is the only thing that makes seams frame-identical.
+· Give every leg an `--end-image` of the real room render it must arrive at. The skill says architecture A takes no end-image — override that here. Prompt-only fidelity drifts badly: unpinned, the model invents a different building with different furniture. These end-images are interiors ahead of the camera, so motion stays forward and the pull-back stutter that rule guards against never happens. Leave leg 7 unpinned only if you want it to fly out; pin it to the hero render if you want it to land there.
+· Render the legs SEQUENTIALLY — each one needs the previous one to exist. Look at every leg's last frame before starting the next. A bad handoff frame poisons every leg after it.
+· If you later need to redo one leg, pin its `--end-image` to the NEXT leg's existing first frame. That preserves the rest of the chain instead of forcing a full re-render.
+
+── WRITE EVERY LEG PROMPT WITH ──
+· The room's real materials, read off the render — not invented. Name the sofa colour, the stove, the counter, the fixtures.
+· "The camera only ever moves forward and never pulls back", plus a closing clause: "in the final second, settle into a slow steady forward glide toward [the next room]".
+· A fixed grade, or the legs drift orange: "cool blue-teal dusk ambient, warm amber only from lamps and fire, natural white point, do not oversaturate into orange".
+· "Empty, unoccupied, no people, architectural, tasteful" — Seedance's content filter flags perfectly innocuous interiors. Budget 2–3 re-rolls per interior leg; it usually passes on the second try. If one keeps failing, re-render just that leg on `kling3_0` with the same start/end frames.
+
+── FIRST AND LAST FRAME ──
+Composite the hero render onto the head of leg 1 and the tail of the final leg with a ~0.35s alpha fade, so the flight opens and closes on exactly that image. Pure ffmpeg, costs nothing, and removes any drift the model introduced at the ends.
+
+── ENCODE ──
+Native 1080p, `-crf 20 -g 8 -movflags +faststart -an`, and save each clip's first frame as a poster.
+
+── EMBEDDING THE ENGINE · it is built to own an entire page, so wire all of this or it will break the site ──
+· Every engine layer is `position:fixed;inset:0` and never releases. Scope them and release once the hero has scrolled past, otherwise the opaque backdrop sits over the whole rest of the page and nothing below the hero is reachable.
+· Do NOT set `opacity` on the engine's container to fade it — an opacity below 1 makes it the containing block for its own fixed children and the pinning collapses. Fade the layers individually.
+· The engine wraps its CSS in `@layer`. An unlayered host reset like `*{margin:0;padding:0}` beats layered CSS at any specificity and will flatten every padding and margin in the flight. Inject the engine CSS unlayered, and delete its `html,body` rule so it stops restyling the host page.
+· Change any wrapper's `overflow-x:hidden` to `overflow-x:clip`. `hidden` forces `overflow-y` to compute to `auto`, which spawns a second scrollbar over the whole page.
+· Hide the route rail's text labels; keep the dots.
+· A scene's poster is its FIRST frame. If you hold the last scene on its final frame, paint the intended still explicitly — otherwise the wrong frame flashes whenever that clip has not finished loading.
+
+── KEEP THE ORIGINAL HERO ──
+Do not delete the existing hero content. Keep the wordmark, the headline, the star rating and the booking card, pinned over the first frame, and fade them out over the first ~0.7 screens as the camera moves in. Do not invent replacement copy.
+
+── HOW IT ENDS ──
+When the flight finishes, hold the final frame and fade that same hero overlay back IN, so dates can still be picked. Then cross-dissolve into the next section as it rises behind. Releasing straight from the flight into the next section shows a full screen of black — the section's last screenful is empty. Use a smoothstep on the dissolve so it passes through the half-and-half blend quickly.
+
+── QA BEFORE HANDING IT BACK ──
+Drive it in a real browser with playwright — NOT an embedded preview pane. Preview panes report the page as hidden, which throttles requestAnimationFrame to zero and makes the engine look completely broken when it is fine. Verify: scroll drives currentTime, every seam holds, the hero fades out and back in, the tail holds, the release dissolves with no black frame, the footer is reachable, and the console is clean."
+
+And the third prompt, is:
+
+"Checkout the site I created in this folder and also use /scroll-world to transform the hero section into a flight scrolling animation. Tell me your plan on what the shot will look like before building anything. Study all the design of the building and all the rooms so all details are presented accurately in the video."
+
+Go through all that documentation, watch the video to see how the site works (the live site appears not to be doing the animation at the moment), and just tell me if this is something Codex can do?
+
+I don't want to use Replicate, is it possible to use our $replicate-media skill?

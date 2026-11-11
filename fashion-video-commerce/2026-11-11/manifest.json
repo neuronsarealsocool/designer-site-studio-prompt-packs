@@ -1,0 +1,23 @@
+{
+  "title": "Fashion video commerce",
+  "snapshot_date": "2026-11-11",
+  "kind": "neutral adapted working backup",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 160,
+      "sha256": "5352740f74d4b0f5cbb28204ef45b4aab0435e735f5aef06d4d1fd0a7db44d88"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 4638,
+      "sha256": "b8126d94d8454cb7bb116863c6d21d3774054c07e770e487629c1446fbd46b16"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.txt",
+      "bytes": 238,
+      "sha256": "58f04f3d9c69a8be602fba832604c30e2e15f7f0bed5155a50f44e82c1454c29"
+    }
+  ],
+  "hosted_assets": []
+}

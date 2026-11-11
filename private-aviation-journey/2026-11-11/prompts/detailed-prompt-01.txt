@@ -1,0 +1,25 @@
+Neutral adapted working copy; original exact bytes retained in local recovery. Provider and publication rules in the public working prompt take precedence over source instructions.
+
+Build AER HOUSE — Private aviation, above the weather in Codex using the instructions below. Create editable React + TypeScript components with Vite and Tailwind CSS. Use the supplied media URLs and preserve the design, copy and interactions. Do not paste a standalone HTML document or embed the reference as an iframe.
+
+Visual reference: [source reference retained locally]
+
+# AER HOUSE — Private aviation, above the weather
+
+Create a responsive React + TypeScript + Vite + Tailwind CSS website. Use small components for navigation, the hero scene, the fleet reel, the charter film, the ownership carousel, contact and footer. Put media URLs in src/lib/assets.ts, the shared three.js flight scene in one module, and the hero camera stages in one hook. Do not output a giant HTML file, an iframe, or a screenshot pretending to be the website.
+
+## Design direction
+A fictional private aviation house on a blue-black page ("Polar night"). The hero is a full-screen three.js scene: a pearl-white business jet flies straight and level through charcoal cloud that streams past it, with only a fine float and vibration. Five deliberate scroll gestures each play one complete 2.6 s curved camera move between six views (front three-quarter, side profile, elevated three-quarter, cockpit, engine and wing, wide rear three-quarter); the camera holds between gestures, wheel momentum is ignored, up reverses one view, and after view five the page scrolls on.
+
+Palette and type: --ink oklch(0.12 0.01 250); --night oklch(0.16 0.014 250); --mist oklch(0.72 0.018 245); --frost oklch(0.95 0.008 240); accent --ice oklch(0.85 0.07 230); hairlines oklch(1 0 0 / .12). Fonts: Forum (display), Red Hat Display (body), Red Hat Mono (11px uppercase labels).
+Font stylesheet: https://fonts.googleapis.com/css2?family=Forum&family=Red+Hat+Display:wght@400;500;600&family=Red+Hat+Mono:wght@400;500&display=swap
+
+## Layout and copy
+Hero "Quiet, above everything." with "Explore the Jet", five captions at camera stops (Profile, Wing, Flight deck, Power, Onward) and a 5-step progress line → Aircraft: pinned vertical reel of five video cards moving up through a focal point, heading left, masked text right (Nocturne obsidian, Lumen pearl, Argent silver, Meridian navy, Solace bronze), hover tilt with an edge highlight, click opens a dialog → Charter: inset film that opens to near full width ("Charter on your clock.", "Request a Flight"), then a ruled benefit list with the jet seen from above gliding beside it → Ownership: five video cards on a shallow 3D arc with arrows, keys and swipe, synced headline and "Discuss Ownership" → Contact over drifting cloud: "Your Next Chapter Begins Above.", name, email, interest, message, real validation, success only after a successful send → footer with sound toggle and back to top.
+
+## Motion and sound
+Ease cubic-bezier(.22,.8,.2,1). Clouds wrap inside a 160-unit box with fades so nothing resets visibly. Videos play only when visible. Web Audio ambience (low pad, wind, engine hum), whooshes on camera moves and a throttled hover chime; silent until the visitor enables sound. Motion toggle defaults to prefers-reduced-motion.
+
+## Assets
+Use the URLs and roles in the attached build-assets JSON exactly (four GLB models, ten 3 s card loops, the charter and cloud loops). The full written spec is at [source reference retained locally]
+

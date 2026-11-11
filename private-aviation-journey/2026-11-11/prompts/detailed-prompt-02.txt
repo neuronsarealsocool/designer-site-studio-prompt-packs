@@ -1,0 +1,74 @@
+Neutral adapted working copy; original exact bytes retained in local recovery. Provider and publication rules in the public working prompt take precedence over source instructions.
+
+# AER HOUSE — a private jet holding level in dark cloud, five staged camera moves
+
+Output `index.html`, `css/style.css`, `js/scene.js` and `js/main.js` (ES modules). Vanilla HTML/CSS/JS plus three.js `0.160.0` from jsDelivr through an import map (`three` → `https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js`, `three/addons/` → `https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/`). Use the models and videos below exactly. Do not redesign, simplify, omit sections or invent replacement assets. Do not split the page into framework components or put the scene in an iframe.
+
+## 1. Concept
+A fictional private aviation house, Aer House, on a blue-black page. The hero is one full-screen WebGL scene: a pearl-white business jet flies straight and level through charcoal cloud that streams past it. The jet barely moves (a few centimetres of float, a fine vibration); the camera does the work. Five deliberate scroll gestures each play one complete 2.6-second camera move between six fixed views, and the camera holds each view until the next gesture. After the fifth view the page scrolls on to a pinned fleet reel, a charter film that opens to full width, a floating ownership carousel on an arc, a contact form over drifting cloud and a footer. Sound is synthesised in the browser and stays off until the visitor turns it on.
+
+## 2. Assets (all on media.scrollhaus.ai, CORS enabled)
+- Base: `https://lapis-slate-xvar.here.now/library/private-aviation-journey/`
+- Models (glTF binary, meshopt-compressed, nose toward −X as delivered; decode with `three/addons/libs/meshopt_decoder.module.js`):
+  - `media/924230d4f2fdd5.glb` — the hero jet (long fuselage, T-tail, tail-mounted engines, winglets)
+  - `private-media/4f35003a242708.glb` — large long-range jet (wing-mounted engines)
+  - `private-media/61e7184a398104.glb` — supersonic concept with a needle nose
+  - `private-media/db8fc8344c05f2.glb` — compact jet
+- Card loops (3 s, seamless, 864×1080 mp4 + webp poster of the same name): `video/card-nocturne`, `video/card-lumen`, `video/card-argent`, `video/card-meridian`, `video/card-solace`
+- Ownership loops (3 s, seamless, 810×1080): `video/own-fractional`, `video/own-cabin`, `video/own-full`, `video/own-detail`, `video/own-lease`
+- Feature loops (1920×1080): `video/charter` (8 s, the hero jet in cloud) and `video/clouds` (10 s, cloud only, used behind the contact form)
+- No other media. Clouds, light and sound are generated in code.
+
+## 3. Design tokens ("Polar night")
+- `--ink: oklch(0.12 0.01 250)` page and far sky (WebGL clear `#05070a`), `--night: oklch(0.16 0.014 250)` raised surfaces, `--slate: oklch(0.34 0.018 250)`, `--mist: oklch(0.72 0.018 245)` secondary text, `--frost: oklch(0.95 0.008 240)` text, `--ice: oklch(0.85 0.07 230)` the single accent (every `em`, active states, progress), `--ice-deep: oklch(0.6 0.1 240)`, `--line: oklch(1 0 0 / .12)`.
+- Fonts: Forum 400 (display, all headings), Red Hat Display 400/500/600 (body), Red Hat Mono 400/500 (11px uppercase labels, letter-spacing .2em). Stylesheet: `https://fonts.googleapis.com/css2?family=Forum&family=Red+Hat+Display:wght@400;500;600&family=Red+Hat+Mono:wght@400;500&display=swap`
+- `--pad: clamp(20px, 5vw, 72px)`; easing `cubic-bezier(.22,.8,.2,1)`; buttons are 48px pills, frost on ink, ice on hover.
+
+## 4. The flight scene (js/scene.js, shared by the hero and the charter top view)
+- Renderer: antialias, pixel ratio min(dpr, 2), ACES filmic tone mapping, sRGB output, `localClippingEnabled`.
+- Scene: background `#05070a`, `FogExp2(#05070a, .03)`. Environment: a PMREM of a near-black room (sphere `#07090c`) with four long soft panels (top `#dfe8f2`, cool sides `#6f86a3`/`#3b4a5e`, floor `#1a1f26`). Lights: Hemisphere(`#9fb4cc`, `#05070a`, .35), key Directional(`#fff6ec`, 2.2) at (−6, 10, −4), rim Directional(`#9fbadb`, .7) at (8, 2, 10).
+- Jet: load, centre on its bounding box, rotate −90° about Y so the nose points −Z, scale so the longest side is 10 units. Replace each material with MeshPhysicalMaterial keeping the model's `map` (it carries the painted windows) and `normalMap`, `fog:false`, clearcoatRoughness .08. Finishes: pearl `#e9ecef` metal .35 rough .32 clearcoat 1; obsidian `#1a1d23` metal .6 rough .22 env 2.4; silver `#b9bec6` metal .9 rough .26; navy `#16223a` metal .5 rough .3; bronze `#9a7a5a` metal .85 rough .3.
+- Level flight: y = .06·sin(2πt/6) + .025·sin(2πt/4); roll .006·sin(2πt/12) + .0008·sin(2πt/.25); pitch .004·sin(2πt/6).
+- Clouds: 150 sprites around a clear tunnel (|x| from 7 to 35) plus 70 wide sprites in a lower deck at y −9 to −15, all inside a 160-unit box along Z. Each frame z = −120 + ((baseZ + 16t) mod 160), so cloud streams past at 16 units/s. Opacity fades in over the first and last 12% of the box (no visible reset) and fades to 0 within ~3 units of the camera. Brightness = tint `#5d6672` × (.05 + 1.5·exp(−distance²/1400 from the jet)), so only cloud near the jet is lit. Sprite textures: five 256px canvases of 5-octave value noise inside a soft ellipse, lighter on top, alpha = d^1.4 × .9.
+
+## 5. Hero (100svh, overflow hidden)
+- Canvas fills the section; a vignette and a bottom gradient sit over it.
+- Six views in the jet's frame (`pos` → `look at`), with a `via` control point for each move so paths arc around the aircraft (QuadraticBezierCurve3, ease-in-out cubic, 2.6 s; targets lerp with the same ease):
+  0. Front three-quarter: (5.6, .3, −12.5) → (3.4, −.5, −1)
+  1. Side profile: (17, .6, .5) → (0, .1, 0), via (15, 1.4, −9)
+  2. Elevated three-quarter: (10, 9.5, 5) → (0, −.4, −.5), via (16, 6, 3)
+  3. Cockpit and forward cabin: (3.1, 1, −7.4) → (0, .3, −3.4), via (8, 5, −6)
+  4. Engine and wing: (5.6, 2.2, 6.8) → (1, .2, 1.2), via (5.6, 2.4, −1)
+  5. Rear three-quarter, wide: (−12, 3.6, 17) → (0, 0, −2.5), via (1.5, 4.8, 14)
+- Portrait screens multiply each camera's distance from its target by min(2.2, 1.3/aspect).
+- Input: a gesture is the first wheel event after 220 ms of no wheel events, so trackpad momentum never counts twice. While the page is at the top and a move is playing, every wheel event is cancelled. Down at stage 5 (settled, fresh gesture) is not cancelled: the page scrolls on. Up at stage 0 is ignored. Touch: cancel touchmove while the hero owns the gesture; on touchend a 40px swipe moves one stage. Keys: ArrowDown/PageDown/Space forward, ArrowUp/PageUp back. "Explore the Jet" plays move 1. Returning to the top restores hero control at the current stage.
+- Copy: kicker "Aer House · Private aviation"; H1 "Quiet, above / *everything.*" (clamp(52px, 8.4vw, 132px)); lede "A small fleet of private jets for people who would rather arrive rested than early."; button "Explore the Jet ↓". Captions shown only when the camera has settled, bottom-left with a 1px ice rule:
+  - 01 · Profile — "Drawn long and low, so the cabin rides level through thin air."
+  - 02 · Wing — "A swept wing that rests the airframe on calm air, high above the weather."
+  - 03 · Flight deck — "Two pilots on every flight. Your cabin begins three steps behind them."
+  - 04 · Power — "Engines set at the tail keep the noise behind you and the cabin to a murmur."
+  - 05 · Onward — "Wherever you are going next, it is already on the horizon."
+- Bottom-right progress: "0N / 05" and five 28×2px segments that fill in ice. Bottom-centre hint: "Scroll to move the camera" / "Scroll for the next view · up to go back" / "Scroll to continue".
+- Loader: full-screen ink with "Aer House" in Forum, a 260px ice progress line driven by the GLB download, then fades out over .9 s.
+
+## 6. Sections
+1. **Aircraft** (380vh, sticky 100svh stage, three columns): heading "Five aircraft, one way of flying.", a large counter "01 / 05" and a progress line on the left; a column of 4:5 cards in the centre; text on the right. Progress p = 0…4 across the section. Each card: translateY((i − p) × cardHeight × .78), scale 1 − min(|d|, 1.6) × .2, brightness 1 − min(|d|, 1) × .62. The right column swaps with masked line reveals (text rises from translateY(105%)) when round(p) changes. Fleet:
+   - Aer House Nocturne · Obsidian black — "The long-range flagship, built for crossing oceans overnight and waking up somewhere new."
+   - Aer House Lumen · Pearl white — "Our most requested aircraft: quiet, quick to the apron and at home on short city runways."
+   - Aer House Argent · Brushed silver — "A supersonic concept and our study in how fast quiet can travel."
+   - Aer House Meridian · Deep navy — "A cabin set up for the working week: four seats, one long desk, no waiting."
+   - Aer House Solace · Champagne bronze — "An heirloom finish for owners who fly with family and want it to feel like home."
+   Hover: tilt toward the pointer (±5° Y, ±4° X), lift 18px, and a 1px radial edge highlight that follows the pointer. A click (or Enter) opens a `<dialog>` with the card's video, finish, name, line and "Ask about this aircraft →".
+2. **Charter**: a 92vh film whose `clip-path: inset(0 X round R)` goes from X = 9.2vw, R = 28px to X = 1.2vw, R = 10px as it enters the viewport; the video is 120% tall with parallax of −8% of its offset from centre. Copy: "Charter on / *your clock.*", "Tell us where and when. We confirm an aircraft, a crew and a plan within two hours, day or night.", "Request a Flight →" (to #contact, preselects Charter). Below, a numbered list with fine rules: Two-hour confirmation; One coordinator; Private terminals; Food from where you leave; Everyone is welcome. Beside it, a sticky 80vh canvas renders the hero jet from straight above; it glides from top to bottom as the list scrolls past and its key light swings.
+3. **Ownership**: headline column on the left (title, sentence, "Discuss Ownership →") and an arc of five 3:4 video cards on the right. For offset d from the active card (wrapping): translateX(d × w × .78) translateY(|d|^1.25 × 34px) translateZ(−|d| × 170px) rotateY(−24°·d) rotateZ(3°·d) scale(.82 if d ≠ 0), opacity .55 at |d| = 1, hidden beyond 2; 1 s transitions. Arrows, ←/→ keys and 40px swipes. Cards: Fractional share "Own the hours you fly."; Cabin craft "A cabin finished by hand."; Full ownership "An aircraft that is wholly yours."; Care "Looked after, quietly."; Leaseback "Let it earn while you are home."
+4. **Contact** over the clouds loop at 55% opacity: "Your Next Chapter / *Begins Above.*", fields Name, Email, Interest (Charter / Ownership / General Inquiry chips), Message. Validate every field and mark invalid ones with `aria-invalid`. Post JSON to a configurable `FORM_ENDPOINT` and show success only when the response is OK; with no endpoint, open a prefilled `mailto:flights@aer-house.aero` and say nothing has been sent yet.
+5. **Footer**: brand, section links, sound toggle, "Back to top ↑", `flights@aer-house.aero · Geneva · London · Dubai`, "© 2026 Aer House".
+
+## 7. Sound (Web Audio, created on the first click of a Sound toggle)
+Master gain eases to .5. Pad: 55/82.4/110.6 Hz oscillators through a 260 Hz low-pass with slow LFOs. Wind: looping noise through a 520 Hz band-pass. Engine hum: noise through a 140 Hz low-pass plus a faint 2960 Hz whine. Each camera move plays a whoosh (band-pass sweeping 260 → 1500 → 320 Hz over the move). Card hover plays a short two-tone chime, throttled to one per 140 ms.
+
+## 8. Video and accessibility
+Videos are `muted loop playsinline preload="none"` with posters, and only the active card ±1, the visible film and the contact background play. A Motion toggle (defaulting to `prefers-reduced-motion`) replaces camera moves with a quick fade, stops the jet's float and pauses videos. Visible focus rings, 44px targets, alt text and `aria-live` captions.
+
+## 9. Check before delivering
+Exactly five deliberate wheel gestures (with trailing momentum) reach view 05, one view per gesture, with the page staying at the top; a sixth scrolls into the fleet. Scrolling back to the top and up reverses one view per gesture. The jet never banks or drifts. The fleet reel, the opening film, the arc and the form all work at 1440×900 and 390×844 with no horizontal overflow.

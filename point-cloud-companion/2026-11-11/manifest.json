@@ -1,0 +1,52 @@
+{
+  "title": "Point-cloud companion",
+  "snapshot_date": "2026-11-11",
+  "kind": "neutral adapted working backup",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 794,
+      "sha256": "28fb53ed7cb02318aff2a348cc808a4d6ca96bf5d9e5e1830e017d958f5c8183"
+    },
+    {
+      "path": "media/48d411d5c12622.webp",
+      "bytes": 13884,
+      "sha256": "48d411d5c126228394e9ff867f24e64fb9e23f023062a96a41bc3c00dc739ab5"
+    },
+    {
+      "path": "media/9101dd00cbe3b4.webp",
+      "bytes": 56938,
+      "sha256": "9101dd00cbe3b471db15443fdf7dabd522adcf201a070b5a7d0c77bdb58f9dc5"
+    },
+    {
+      "path": "private-media/0efcd6f363c852.pcd",
+      "bytes": 721096,
+      "sha256": "0efcd6f363c852571e00cfca44fbd2e760df31b9bccb754d2dc27ba225d998ab"
+    },
+    {
+      "path": "PRIVATE-MEDIA.txt",
+      "bytes": 226,
+      "sha256": "61f86087b9adcde894f253c0d313520db7b2003f398786f6e8fba4e20fc0bfc6"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 16495,
+      "sha256": "45dd981477fbe3d20a7c77d9832fcb542b4b3bc60baafbc1866514f66c3a8fa8"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.txt",
+      "bytes": 53501,
+      "sha256": "73cab6ed0aca54111d3d45e10ecd48e013faefc48735a337a92797e1bec074c7"
+    }
+  ],
+  "hosted_assets": [
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/point-cloud-companion/media/48d411d5c12622.webp",
+      "sha256": "48d411d5c126228394e9ff867f24e64fb9e23f023062a96a41bc3c00dc739ab5"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/point-cloud-companion/media/9101dd00cbe3b4.webp",
+      "sha256": "9101dd00cbe3b471db15443fdf7dabd522adcf201a070b5a7d0c77bdb58f9dc5"
+    }
+  ]
+}

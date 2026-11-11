@@ -15,3 +15,16 @@ chat before publication. No credentials belong in this repository.
 - Cinematic site workflow: `cinematic-site-workflow/2026-11-10`, 1 media files.
 - Desktop and mobile workflow: `desktop-mobile-workflow/2026-11-10`, 1 media files.
 - Tower and room tours: `tower-room-tours/2026-11-10`, 12 media files.
+
+Recovered from the chat audit on 11 November 2026:
+
+- Lake cabin retreat: `lake-cabin-retreat/2026-11-11`, 0 public media/support files.
+- Private aviation journey: `private-aviation-journey/2026-11-11`, 25 public media/support files.
+- Racing driver profile: `racing-driver-profile/2026-11-11`, 30 public media/support files.
+- Cinematic wipe studio: `cinematic-wipe-studio/2026-11-11`, 1 public media/support files.
+- Point-cloud companion: `point-cloud-companion/2026-11-11`, 2 public media/support files.
+- Curved film archive: `curved-film-archive/2026-11-11`, 4 public media/support files.
+- Bird species atlas: `bird-species-atlas/2026-11-11`, 4 public media/support files.
+- Fashion video commerce: `fashion-video-commerce/2026-11-11`, 0 public media/support files.
+
+Original implementation detail is kept in neutral adapted source documents. Optional unused media and the exact point-cloud geometry remain private. The historical fashion video was unavailable; its brief is retained without claiming recovered video bytes.

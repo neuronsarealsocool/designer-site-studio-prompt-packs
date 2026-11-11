@@ -1,0 +1,33 @@
+{
+  "title": "Cinematic wipe studio",
+  "snapshot_date": "2026-11-11",
+  "kind": "neutral adapted working backup",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 347,
+      "sha256": "7bfd23ecd88bc87ae28e6024b3e39c9d266730c2bb1d0c936e8b4f42fc8c6efb"
+    },
+    {
+      "path": "media/771f2e092bee41.mp4",
+      "bytes": 21794309,
+      "sha256": "771f2e092bee41df4f51af1ccf90cc1fa8643c8989791697e0cf99bf2490cae2"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 8240,
+      "sha256": "c1e279050be5fbd8535acbb05c72024519151ee0f591be440de5d29116884861"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.txt",
+      "bytes": 55384,
+      "sha256": "a77f877ef563a81e8f56a8abd5fedcde435b59c71e65d8105fe99f41122aeb9e"
+    }
+  ],
+  "hosted_assets": [
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/cinematic-wipe-studio/media/771f2e092bee41.mp4",
+      "sha256": "771f2e092bee41df4f51af1ccf90cc1fa8643c8989791697e0cf99bf2490cae2"
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "title": "Racing driver profile",
+  "snapshot_date": "2026-11-11",
+  "kind": "neutral adapted working backup",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 8523,
+      "sha256": "b04bd33b493bea4380178d59c79b636f5d865b2a618dbbf13e884743f3ef1c2c"
+    },
+    {
+      "path": "media/13775f6b41e5d4.webp",
+      "bytes": 12904,
+      "sha256": "13775f6b41e5d4dcaaf413e956358b5af6e233406555306b4d11829b730e03f8"
+    },
+    {
+      "path": "media/1a3846da30b1af.webp",
+      "bytes": 64028,
+      "sha256": "1a3846da30b1afcdf562060b00665e1a494c9b47f76a52f9d40a2ce0e9263735"
+    },
+    {
+      "path": "media/1af8da56084baa.webp",
+      "bytes": 8800,
+      "sha256": "1af8da56084baa9d4b7c8863d8b7fb46ff4ea0bfa7dc735623cca66683715405"
+    },
+    {
+      "path": "media/216aed48ad2a34.webp",
+      "bytes": 177720,
+      "sha256": "216aed48ad2a3467624c65158dbe9f319603530b8823670c312ad7937b8e9c81"
+    },
+    {
+      "path": "media/2f6bc45ff1c267.webp",
+      "bytes": 91380,
+      "sha256": "2f6bc45ff1c267bb3551212e1eea296cf2e842313fda02d3f280e1a7be1e34da"
+    },
+    {
+      "path": "media/32834d009b9b72.webp",
+      "bytes": 176658,
+      "sha256": "32834d009b9b72e15931ec310a8fec3f605dd7b4d6ff052c6b04044b1586ef87"
+    },
+    {
+      "path": "media/35629e47875db5.svg",
+      "bytes": 847,
+      "sha256": "35629e47875db59e22189b9f438c6ae8f3cb269e4ecf148c7dbbbb0d92929ce3"
+    },
+    {
+      "path": "media/3b96e1c0d82427.glb",
+      "bytes": 801000,
+      "sha256": "3b96e1c0d824278a7c09819c05802f1f31b2cf3bd1e625e2b450be8dbad1f71e"
+    },
+    {
+      "path": "media/474b3ad6b23044.svg",
+      "bytes": 2704,
+      "sha256": "474b3ad6b230449492e92aa4ce2f869c2c46ca1140335fcc95df015fb421726b"
+    },
+    {
+      "path": "media/4b53d643a5ac0c.svg",
+      "bytes": 808,
+      "sha256": "4b53d643a5ac0c44615a8c0bfc8199f2335f3086b133891ae23c14d9d528ae41"
+    },
+    {
+      "path": "media/52a472d83be23d.webp",
+      "bytes": 107220,
+      "sha256": "52a472d83be23db0fb65e55c9f048009ed0a8fe611332eef4ff4bf06505bbcb1"
+    },
+    {
+      "path": "media/52f6706ecfb274.webp",
+      "bytes": 84350,
+      "sha256": "52f6706ecfb2741552731146cfabec9babe3842a7dfea87d71ffac955ed555ef"
+    },
+    {
+      "path": "media/5acd555b050c5c.webp",
+      "bytes": 127820,
+      "sha256": "5acd555b050c5c26d48bb520bdcd36b3d56dda0b5c4ffef03b019189f5a21bb5"
+    },
+    {
+      "path": "media/5c46ffeb9b5169.svg",
+      "bytes": 3763,
+      "sha256": "5c46ffeb9b51691ed4f9cb0e01423b450c6511346effc4b46d1b3b5754e9a477"
+    },
+    {
+      "path": "media/6ccf86c8cbbf3e.webp",
+      "bytes": 89140,
+      "sha256": "6ccf86c8cbbf3eb0978c97f13ff8413af2be55a1b872aa05ec377f472cbbc675"
+    },
+    {
+      "path": "media/78cf2af686268b.webp",
+      "bytes": 26288,
+      "sha256": "78cf2af686268b6f57881967e52b51b242d5bf04fc4569c6675fe5b65d4f92c8"
+    },
+    {
+      "path": "media/7b9cf5ee6b63d7.webp",
+      "bytes": 80792,
+      "sha256": "7b9cf5ee6b63d7ab46ca3df8cd63c1f9cb8d75aed06ddab25ea8344ffff114e0"
+    },
+    {
+      "path": "media/7d1ca2300066e8.hdr",
+      "bytes": 386788,
+      "sha256": "7d1ca2300066e820d3aff8693abe6f8a3d2d509b06d7ad1cbd3c49b37c97ba66"
+    },
+    {
+      "path": "media/7d49ab56889c2b.png",
+      "bytes": 11183,
+      "sha256": "7d49ab56889c2be23a202c323a00148320b2fbed83b6a846bf002ed372be878c"
+    },
+    {
+      "path": "media/800d9ebf526d77.webp",
+      "bytes": 3464,
+      "sha256": "800d9ebf526d77e786ce1f6bc38f7c26ecb88f2feae41c327a40c6012a17c4fa"
+    },
+    {
+      "path": "media/8088e8f69e9e72.webp",
+      "bytes": 116580,
+      "sha256": "8088e8f69e9e7221bc367f76675a3f8fd23df8722642dd09a3d51a82b876cac5"
+    },
+    {
+      "path": "media/83832ddaea1b33.webp",
+      "bytes": 5326,
+      "sha256": "83832ddaea1b332d4e86d630fc04fa2b46968c81e6ed997658b413866d60a83f"
+    },
+    {
+      "path": "media/8e94e804bad9f3.png",
+      "bytes": 17606,
+      "sha256": "8e94e804bad9f3ae986634995a7d5581ec93265135938a0189237b82051599e4"
+    },
+    {
+      "path": "media/a56bd92d0ae46c.webp",
+      "bytes": 16680,
+      "sha256": "a56bd92d0ae46c699a24a2f31b18b7a92bded0998d0ec20ef3f9c23166d96efe"
+    },
+    {
+      "path": "media/a851a6d1838080.svg",
+      "bytes": 2316,
+      "sha256": "a851a6d1838080c731cc5e62cd77259c1350161913a7f926dd0307c24d2c27e2"
+    },
+    {
+      "path": "media/b18b0d3e6319f3.svg",
+      "bytes": 7325,
+      "sha256": "b18b0d3e6319f3522c8caf93c02754d7ca4476acbf69df42da943dcaf4cdb16a"
+    },
+    {
+      "path": "media/bf8d50fea02639.webp",
+      "bytes": 170,
+      "sha256": "bf8d50fea026396ac507027459a065f47572fb42233d4bbce1fd4b0b5453ca7b"
+    },
+    {
+      "path": "media/c8c3ea7953e135.webp",
+      "bytes": 143950,
+      "sha256": "c8c3ea7953e1356dccabf112fa61761ce70249b16b89abbd86895a684374f807"
+    },
+    {
+      "path": "media/d13beb88e35770.svg",
+      "bytes": 949,
+      "sha256": "d13beb88e3577096e0d6417c9e5a26456f02ccea33424db2938c6d47c1cd371b"
+    },
+    {
+      "path": "media/ed3f0cba149669.webp",
+      "bytes": 150480,
+      "sha256": "ed3f0cba149669fb242ec4ebf2f61cb95da3de23ade32e121691a372be917b88"
+    },
+    {
+      "path": "private-media/9ae80a3aea8412.svg",
+      "bytes": 1041,
+      "sha256": "9ae80a3aea84127e5e9359934e07d879b9dfb0fec092713627d88d00bed93b77"
+    },
+    {
+      "path": "private-media/d8e7a8b16ce833.svg",
+      "bytes": 282,
+      "sha256": "d8e7a8b16ce83328860e31615de9752b54b54ef424f3d14a3155a5a139020267"
+    },
+    {
+      "path": "PRIVATE-MEDIA.txt",
+      "bytes": 184,
+      "sha256": "0393fcce8f657b2b557034a87176e00bd5dc4c019f5c11b71b9d7c8701e22d89"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 26415,
+      "sha256": "0f6cd25d98851f1d061295b03bbc2cca058d06b8fca9e866603b6ae68cfe6126"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.txt",
+      "bytes": 293694,
+      "sha256": "bd11bed7aed0f8960b5d5dad8b658bc2a9c4fce3224448cbdcff1e6c425ad434"
+    }
+  ],
+  "hosted_assets": [
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/52f6706ecfb274.webp",
+      "sha256": "52f6706ecfb2741552731146cfabec9babe3842a7dfea87d71ffac955ed555ef"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/83832ddaea1b33.webp",
+      "sha256": "83832ddaea1b332d4e86d630fc04fa2b46968c81e6ed997658b413866d60a83f"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/7d1ca2300066e8.hdr",
+      "sha256": "7d1ca2300066e820d3aff8693abe6f8a3d2d509b06d7ad1cbd3c49b37c97ba66"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/3b96e1c0d82427.glb",
+      "sha256": "3b96e1c0d824278a7c09819c05802f1f31b2cf3bd1e625e2b450be8dbad1f71e"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/216aed48ad2a34.webp",
+      "sha256": "216aed48ad2a3467624c65158dbe9f319603530b8823670c312ad7937b8e9c81"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/1af8da56084baa.webp",
+      "sha256": "1af8da56084baa9d4b7c8863d8b7fb46ff4ea0bfa7dc735623cca66683715405"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/a56bd92d0ae46c.webp",
+      "sha256": "a56bd92d0ae46c699a24a2f31b18b7a92bded0998d0ec20ef3f9c23166d96efe"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/bf8d50fea02639.webp",
+      "sha256": "bf8d50fea026396ac507027459a065f47572fb42233d4bbce1fd4b0b5453ca7b"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/a851a6d1838080.svg",
+      "sha256": "a851a6d1838080c731cc5e62cd77259c1350161913a7f926dd0307c24d2c27e2"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/800d9ebf526d77.webp",
+      "sha256": "800d9ebf526d77e786ce1f6bc38f7c26ecb88f2feae41c327a40c6012a17c4fa"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/13775f6b41e5d4.webp",
+      "sha256": "13775f6b41e5d4dcaaf413e956358b5af6e233406555306b4d11829b730e03f8"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/78cf2af686268b.webp",
+      "sha256": "78cf2af686268b6f57881967e52b51b242d5bf04fc4569c6675fe5b65d4f92c8"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/4b53d643a5ac0c.svg",
+      "sha256": "4b53d643a5ac0c44615a8c0bfc8199f2335f3086b133891ae23c14d9d528ae41"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/8e94e804bad9f3.png",
+      "sha256": "8e94e804bad9f3ae986634995a7d5581ec93265135938a0189237b82051599e4"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/474b3ad6b23044.svg",
+      "sha256": "474b3ad6b230449492e92aa4ce2f869c2c46ca1140335fcc95df015fb421726b"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/d13beb88e35770.svg",
+      "sha256": "d13beb88e3577096e0d6417c9e5a26456f02ccea33424db2938c6d47c1cd371b"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/b18b0d3e6319f3.svg",
+      "sha256": "b18b0d3e6319f3522c8caf93c02754d7ca4476acbf69df42da943dcaf4cdb16a"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/32834d009b9b72.webp",
+      "sha256": "32834d009b9b72e15931ec310a8fec3f605dd7b4d6ff052c6b04044b1586ef87"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/5c46ffeb9b5169.svg",
+      "sha256": "5c46ffeb9b51691ed4f9cb0e01423b450c6511346effc4b46d1b3b5754e9a477"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/35629e47875db5.svg",
+      "sha256": "35629e47875db59e22189b9f438c6ae8f3cb269e4ecf148c7dbbbb0d92929ce3"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/1a3846da30b1af.webp",
+      "sha256": "1a3846da30b1afcdf562060b00665e1a494c9b47f76a52f9d40a2ce0e9263735"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/5acd555b050c5c.webp",
+      "sha256": "5acd555b050c5c26d48bb520bdcd36b3d56dda0b5c4ffef03b019189f5a21bb5"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/6ccf86c8cbbf3e.webp",
+      "sha256": "6ccf86c8cbbf3eb0978c97f13ff8413af2be55a1b872aa05ec377f472cbbc675"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/ed3f0cba149669.webp",
+      "sha256": "ed3f0cba149669fb242ec4ebf2f61cb95da3de23ade32e121691a372be917b88"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/7b9cf5ee6b63d7.webp",
+      "sha256": "7b9cf5ee6b63d7ab46ca3df8cd63c1f9cb8d75aed06ddab25ea8344ffff114e0"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/52a472d83be23d.webp",
+      "sha256": "52a472d83be23db0fb65e55c9f048009ed0a8fe611332eef4ff4bf06505bbcb1"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/7d49ab56889c2b.png",
+      "sha256": "7d49ab56889c2be23a202c323a00148320b2fbed83b6a846bf002ed372be878c"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/8088e8f69e9e72.webp",
+      "sha256": "8088e8f69e9e7221bc367f76675a3f8fd23df8722642dd09a3d51a82b876cac5"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/2f6bc45ff1c267.webp",
+      "sha256": "2f6bc45ff1c267bb3551212e1eea296cf2e842313fda02d3f280e1a7be1e34da"
+    },
+    {
+      "url": "https://lapis-slate-xvar.here.now/library/racing-driver-profile/media/c8c3ea7953e135.webp",
+      "sha256": "c8c3ea7953e1356dccabf112fa61761ce70249b16b89abbd86895a684374f807"
+    }
+  ]
+}
