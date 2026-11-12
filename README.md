@@ -28,3 +28,5 @@ Recovered from the chat audit on 11 November 2026:
 - Fashion video commerce: `fashion-video-commerce/2026-11-11`, 0 public media/support files.
 
 Original implementation detail is kept in neutral adapted source documents. Optional unused media and the exact point-cloud geometry remain private. The historical fashion video was unavailable; its brief is retained without claiming recovered video bytes.
+
+Point-cloud companion corrected snapshot: `point-cloud-companion/2026-11-12`, expanded full working specification, three approved assets including the exact geometry, and its required notice. The earlier snapshots remain available for recovery.

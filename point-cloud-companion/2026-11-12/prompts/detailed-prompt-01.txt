@@ -1,0 +1,743 @@
+Neutral adapted source copy; original exact bytes retained locally.
+
+# Prompt: recreate "ION OS" (new-18), exactly
+
+> Paste everything below the line into a coding model. It is self-contained: every copy string, colour,
+> size, timing, spring constant, shader term and scroll threshold of the original is in here. Where a
+> value is given, use it as is: do not round, restyle or "improve".
+
+---
+
+## 0. The task
+
+Build a single-page, desktop-first marketing site for a fictional product, **ION OS** ("the operating
+system that sees you"). The page is a **point-cloud bust of a human head and shoulders** (≈ 60 000
+points) rendered with three.js on a see-through canvas fixed behind the page. The bust reacts to the
+pointer (turns its whole body toward it, its points stir like a liquid, a colour gradient follows the
+pointer) and is choreographed by scroll through four parts:
+
+1. **Hero** — the bust in front of a huge pixel-font title "HELLO, I'M ION", a note in the bottom-left corner.
+2. **OS** (pinned) — the whole dark screen *zooms out* into a rounded frame on a light lavender ground; seven
+   dark-glass UI widgets fly in from "the camera" around it, hold, then fly back out as the frame zooms back
+   in to full screen.
+3. **Memory** — the bust glides into the top-left corner, magnified 3.3×, turned to look right; text and
+   glass panels on the right.
+4. **Agents** — the bust bursts into pixel dust, travels as a cloud, and re-forms in the top-right corner,
+   looking left; text and panels on the left.
+
+### Deliverable and stack
+
+- **Buildless.** `index.html`, `tokens.css`, `style.css`, `main.js`, and ES modules in `lib/`:
+  `cloud.js`, `cursor.js`, `liquid.js`, `scroll.js`, `frame.js`, `reveal.js`, `veil.js`, `squircle.js`,
+  `header.js`, `tone.js`. No framework, no bundler, no npm dependencies. Served with `npx serve . -l 5203`
+  (`file://` won't work for ES modules).
+- **three.js 0.186.1** via an import map:
+  ```json
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/" } }
+  ```
+  Addons used: `PCDLoader`, `EffectComposer`, `RenderPass`, `UnrealBloomPass`, `OutputPass`, `GPUComputationRenderer`.
+- **Model:** `https://lapis-slate-xvar.here.now/library/point-cloud-companion/media/0efcd6f363c852.pcd`
+  (PCL v0.7 binary, 59 750 points, `x y z` float32 only).
+- **Fonts:** Geist Pixel Square and Geist Pixel Circle from jsDelivr:
+  `https://cdn.jsdelivr.net/npm/geist@1.8.1/dist/fonts/geist-pixel/GeistPixel-Square.woff2` and `…/GeistPixel-Circle.woff2`,
+  declared inline in `<head>` with `@font-face` (weight 400, `font-display: swap`), no preload.
+  Body text is local **Helvetica Neue**; only if the device lacks it, link Inter 400/500 from Google Fonts
+  (`https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap`) — see §3.
+- **Gallery images** (640×430 webp):
+  - People: `https://lapis-slate-xvar.here.now/library/point-cloud-companion/media/48d411d5c12622.webp`
+  - Places: `https://lapis-slate-xvar.here.now/library/point-cloud-companion/media/9101dd00cbe3b4.webp`
+- `<title>new-18</title>`, `<meta name="theme-color" content="#000000">`, viewport
+  `width=device-width, initial-scale=1, viewport-fit=cover`, `lang="en"`.
+
+### House rules for the code
+
+- Comments in plain English sentences explaining *why*, at the top of every module and above each constant.
+- rAF loops run **on demand** only (woken by scroll / resize / pointer; they sleep when everything has
+  settled; they pause on `visibilitychange`).
+- All springs: unit mass, stiffness `k`, damping `c`, **semi-implicit Euler in substeps of ≤ 1/240 s**,
+  `dt` clamped to `[0, 0.25]` s; a spring snaps to its target and reports "still" when
+  `|t − x| < eps` and `|v| < eps·10`.
+- Respect `prefers-reduced-motion` everywhere (details per section).
+- No strokes, no drop shadows (one exception: the light-mode lift on OS widgets), no icon fonts (glyphs are drawn in CSS).
+
+---
+
+## 1. Layers (z-order, bottom → top)
+
+| layer | element | z |
+|---|---|---|
+| page ground | `html { background: var(--site) }` (#000; animated to #e8e5ef in the OS section) | — |
+| stage | `.stage` fixed `inset:0`, `pointer-events:none`. Children in order: (own black fill only when `.is-framed`), `p.hero__title` (z 0), the WebGL canvas, `.frame-head` (z 1) | 1 |
+| screens | `section.screen` (Memory, Agents) | 2 |
+| bottom veil | progressive blur strip, appended to `body` after everything | 2 (later in DOM → above screens) |
+| OS section & hero note | `.os` (z 3), `.hero__note` (fixed, z 3) | 3 |
+| header | `.hd` fixed | 10 |
+
+`html, body { overflow-x: clip; overscroll-behavior: none }`, `body { margin:0 }`, `*, ::before, ::after { box-sizing: border-box }`,
+`a { color: inherit; text-decoration: none }`. Body font: `400 var(--t-m)/var(--lh-m) var(--font-text)`,
+`letter-spacing: var(--tr-m)`, antialiased (`-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale`).
+
+---
+
+## 2. Design tokens — `tokens.css` (use verbatim)
+
+```css
+:root {
+  --u: clamp(.85px, 100vw / 1470, 1.3px);   /* one design pixel; design frame 1470 × 956 */
+
+  --s4: calc(var(--u) * 4);  --s8: calc(var(--u) * 8);  --s12: calc(var(--u) * 12); --s16: calc(var(--u) * 16);
+  --s24: calc(var(--u) * 24); --s32: calc(var(--u) * 32); --s48: calc(var(--u) * 48); --s72: calc(var(--u) * 72);
+  --s120: calc(var(--u) * 120); --s192: calc(var(--u) * 192);
+
+  --site: #000;
+  --bg: #121214; --panel: #18181a; --card: #242428; --control: #3c3c40;
+
+  --glass: rgba(24, 24, 26, .52);
+  --glass-light: rgba(252, 252, 252, .08);
+  --glass-filter: blur(calc(var(--u) * 24)) saturate(1.4);
+
+  --fill-1: rgba(252, 252, 252, .06);
+  --fill-2: rgba(252, 252, 252, .1);
+  --fill-3: rgba(252, 252, 252, .16);
+  --rule:   rgba(252, 252, 252, .14);
+  --chip-blur: blur(calc(var(--u) * 12)) saturate(1.4);
+
+  --l-bg: #e8e5ef;
+  --l-surface: rgba(252, 251, 255, .82); --l-surface-2: rgba(255, 255, 255, .6);
+  --l-ink-1: #17161b; --l-ink-2: #5d5a67; --l-ink-3: #8e8a98;
+  --l-fill-1: rgba(23, 22, 27, .05); --l-fill-2: rgba(23, 22, 27, .09); --l-rule: rgba(23, 22, 27, .1);
+  --l-lift: 0 calc(var(--u) * 24) calc(var(--u) * 60) calc(var(--u) * -24) rgba(60, 40, 110, .18);
+  --l-glass-filter: blur(calc(var(--u) * 20)) saturate(1.5);
+
+  --ink-1: #fcfcfc; --ink-2: #a4a4aa; --ink-3: #88888e;
+
+  --lavender: #c8a9eb; --yellow: #e2e626; --cyan: #7cf8fa; --coral: #f0634f; --steel: #6f83a2;
+
+  --grad-dawn: linear-gradient(90deg, #f3624f 0%, #b0665d 21%, #645a5b 32%, #314045 42%, #141519 53%, #243b41 63%, #456272 74%, #6f82a2 84%, #a6a0d0 95%, #b7a6dc 100%);
+  --grad-golden: linear-gradient(90deg, #caaaeb 0%, #d1c0a6 45%, #e4e728 100%);
+
+  --font-text:  "Helvetica Neue", Helvetica, "Inter", Arial, sans-serif;
+  --font-pixel: "Geist Pixel Square", "Helvetica Neue", Helvetica, "Inter", sans-serif;
+  --font-dots:  "Geist Pixel Circle", "Geist Pixel Square", sans-serif;
+
+  --t-s: calc(var(--u) * 13); --lh-s: 1.3;  --tr-s: 0;
+  --t-m: calc(var(--u) * 16); --lh-m: 1.45; --tr-m: -.011em;
+  --t-l: calc(var(--u) * 28); --lh-l: 1.15; --tr-l: -.025em;
+  --tr-caps: .06em;
+  --d-1: min(calc(var(--u) * 176), 12.6vw); --lh-d1: .86;
+  --d-2: calc(var(--u) * 56); --lh-d2: 1;
+
+  --r-xs: calc(var(--u) * 6); --r-s: calc(var(--u) * 10); --r-m: calc(var(--u) * 14); --r-l: calc(var(--u) * 20);
+  --r-pill: 999px; --btn-h: calc(var(--u) * 44); --gutter: var(--s48);
+
+  --ease-out:  cubic-bezier(.23, 1, .32, 1);
+  --ease-expo: cubic-bezier(.16, 1, .3, 1);
+  --ease-move: cubic-bezier(.77, 0, .175, 1);
+  --dur-press: 160ms; --dur-ui: 240ms; --dur-in: 600ms; --stagger: 60ms;
+  --in-blur: calc(var(--u) * 12); --in-y: calc(var(--u) * 16); --press: .97;
+}
+@media (max-width: 767px) {
+  :root { --u: calc(100vw / 430); --t-s: max(12px, calc(var(--u) * 13)); --t-m: max(15px, calc(var(--u) * 16));
+          --t-l: max(22px, calc(var(--u) * 28)); --d-2: calc(var(--u) * 44); --gutter: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-press: 0ms; --dur-ui: 0ms; --dur-in: 0ms; --stagger: 0ms; --in-blur: 0px; --in-y: 0px; }
+}
+```
+
+**Smooth corners everywhere:** every element with `data-sq` gets `clip-path: path(...)` — a Figma-style
+squircle with **60 % corner smoothing** built from its own computed `border-top-left-radius` and size
+(the smooth-corner construction: per corner a cubic, an arc, a cubic; smoothing reduced to
+`min(0.6, budget/r − 1)` where `budget = min(w,h)/2`, `r = min(r, budget)`). Recompute on every
+`ResizeObserver` callback. The CSS `border-radius` stays as the no-JS fallback.
+
+---
+
+## 3. HTML — exact structure and copy
+
+### `<head>` (in this order)
+
+1. charset, viewport, title, theme-color (above).
+2. An inline classic script, before first paint: add class `js` to `<html>`; measure `'mmmmmlliiWWQ@'` on a
+   canvas at `72px monospace` and at `72px "Helvetica Neue", monospace`; if the widths are equal (no
+   Helvetica Neue), add class `no-helvetica` and append the Inter stylesheet link.
+3. `<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>`.
+4. Inline `<style>` with the two Geist Pixel `@font-face` rules.
+5. `tokens.css`, `style.css`, the import map.
+
+### `<body>` (verbatim copy, classes and attributes)
+
+```html
+<header class="hd" data-header>
+  <div class="hd__bar" data-sq>
+    <a class="hd__tile" href="#top" aria-label="ION OS" data-sq><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></a>
+    <time class="hd__clock" data-clock><span data-hm>14:05</span><span class="hd__sec" data-s>:00</span></time>
+    <i class="hd__rule" aria-hidden="true"></i>
+    <span class="hd__status"><i class="hd__dot" aria-hidden="true"></i>ION is listening</span>
+    <i class="hd__rule hd__rule--status" aria-hidden="true"></i>
+    <nav class="hd__nav" aria-label="Sections">
+      <a href="#status">Status</a><a href="#agents">Agents</a><a href="#memory">Memory</a>
+    </nav>
+    <a class="hd__btn hd__btn--card" href="#signin" data-sq>Sign in</a>
+    <a class="hd__btn hd__btn--main" href="#access" data-sq>Join the waitlist</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <h1 class="sr-only">Hello, I'm ION</h1>
+    <div class="hero__note" data-sq>
+      <div class="hero__meta">
+        <span class="badge" data-sq><i class="badge__dot" aria-hidden="true"></i>Private beta</span>
+        <span>ION OS 0.9 · on-device memory</span>
+      </div>
+      <p class="hero__lead">ION is the operating system<br> that sees you. <span>It asks before it acts.</span></p>
+    </div>
+  </section>
+
+  <section class="os" id="os" data-screen="os" aria-labelledby="os-title">
+    <h2 class="sr-only" id="os-title">Everything around you, in one quiet place.</h2>
+    <div class="os__pin">
+      <figure class="ow ow--img ow--img-b" data-at=".42" data-drift="12" data-sq><img class="ph" src="[People URL]" alt="" width="640" height="430" decoding="async" data-sq><figcaption>People <span>4</span></figcaption></figure>
+      <figure class="ow ow--img ow--img-c" data-at=".48" data-drift="16" data-sq><img class="ph" src="[Places URL]" alt="" width="640" height="430" decoding="async" data-sq><figcaption>Places <span>9</span></figcaption></figure>
+      <div class="ow ow--add" data-at=".50" data-drift="18" data-sq><span>Add image</span><span class="lkey" data-sq aria-hidden="true"><i class="plus"></i></span></div>
+      <div class="ow ow--tools" data-at=".40" data-drift="9" data-sq>
+        <span class="lchip" data-sq>Summarize<kbd data-sq>⌘S</kbd></span>
+        <span class="lchip" data-sq>Rewrite<kbd data-sq>⌘R</kbd></span>
+        <span class="lchip" data-sq>Later<kbd data-sq>L</kbd></span>
+      </div>
+      <article class="ow ow--chart" data-at=".46" data-drift="14" data-sq>
+        <div class="ow__head"><span>Focus this week</span><span class="ow__up">+12%</span></div>
+        <div class="minibars" aria-hidden="true"><i style="--h:46"></i><i style="--h:62"></i><i style="--h:34"></i><i style="--h:28"></i><i style="--h:74"></i><i style="--h:58"></i><i class="now" style="--h:66"></i></div>
+        <div class="minibars__axis"><span>Thu</span><span>Now</span></div>
+      </article>
+      <div class="ow ow--composer" data-at=".58" data-drift="6" data-sq>
+        <p class="composer__text" data-type="Move my 3 pm with Ana to Friday and tell her why it moved."><span data-typed>Ask ION anything…</span><i class="caret-text" aria-hidden="true"></i></p>
+        <div class="composer__bar">
+          <span class="lkey" data-sq aria-hidden="true"><i class="plus"></i></span>
+          <span class="lchip" data-sq>Image</span>
+          <span class="lchip" data-sq>Doc</span>
+          <span class="composer__end">
+            <span class="lkey" data-sq aria-hidden="true"><i class="mic"></i></span>
+            <span class="lkey lkey--send" data-sq aria-hidden="true"><i class="arrow arrow--up"></i></span>
+          </span>
+        </div>
+        <i class="composer__glow" aria-hidden="true"></i>
+      </div>
+      <div class="ow ow--toast" data-at=".72" data-drift="11" data-sq role="status">
+        <span class="done" aria-hidden="true"></span>Done. Ana has the new time.
+      </div>
+    </div>
+  </section>
+
+  <section class="screen screen--right" id="memory" data-screen="memory">
+    <div class="screen__col">
+      <header class="screen__head" data-reveal data-depth="0.04">
+        <p class="screen__eyebrow"><span class="badge" data-sq><i class="badge__dot" aria-hidden="true"></i>On-device</span><span>Memory</span></p>
+        <h2 class="screen__title">ION remembers, so you don't have to. <span class="screen__sub">Everything it keeps stays on your device.</span></h2>
+        <p class="screen__text">The people, places and promises you'd want a friend to remember, held where only you can reach them.</p>
+      </header>
+      <ul class="chips" data-reveal data-depth="0.06">
+        <li class="chip" data-sq>People</li><li class="chip" data-sq>Places</li><li class="chip" data-sq>Promises</li><li class="chip" data-sq>Preferences</li>
+      </ul>
+      <article class="panel" data-sq data-reveal data-depth="0.1">
+        <div class="panel__head">
+          <h3 class="panel__title">Remembered</h3>
+          <div class="seg" data-sq role="tablist" aria-label="Range">
+            <button class="seg__btn" data-sq role="tab" aria-selected="false" type="button" data-range="Day">Day</button>
+            <button class="seg__btn is-on" data-sq role="tab" aria-selected="true" type="button" data-range="Week">Week</button>
+            <button class="seg__btn" data-sq role="tab" aria-selected="false" type="button" data-range="Month">Month</button>
+          </div>
+        </div>
+        <div class="bars" data-bars='{"Day":{"values":[14,22,46,38,18,26,58,44,30,62,40,72],"axis":["8 AM","10 AM","12 PM","2 PM","4 PM","Now"],"now":11},"Week":{"values":[48,62,30,24,70,56,66],"axis":["Thu","Fri","Sat","Sun","Mon","Tue","Now"],"now":6},"Month":{"values":[34,52,28,61,44,22,57,70,38,26,49,63,31,55,72,40,24,58,66,35,47,69,29,53,74,42,36,60,51,68],"axis":["Sep 22","Sep 29","Oct 6","Oct 13","Now"],"now":29}}'>
+          <div class="bars__plot" aria-hidden="true"></div>
+          <div class="bars__axis"></div>
+        </div>
+        <p class="panel__note"><span data-count="1204">1,204</span> moments kept · <span data-count="312">312</span> forgotten on request</p>
+      </article>
+      <article class="panel" data-sq data-reveal data-depth="0.1">
+        <div class="panel__head">
+          <h3 class="panel__title">Where it lives</h3>
+          <span class="badge badge--quiet" data-sq>Encrypted</span>
+        </div>
+        <div class="track" aria-hidden="true"><i style="--w:100;--c:var(--lavender)"></i></div>
+        <div class="legend"><span><i style="--c:var(--lavender)"></i>On this device · 100%</span><span><i style="--c:var(--fill-3)"></i>Cloud · 0%</span></div>
+        <ul class="chips">
+          <li class="chip" data-sq>Forget anytime<kbd data-sq>⌘⌫</kbd></li>
+          <li class="chip" data-sq>Export<kbd data-sq>⌘E</kbd></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="screen screen--left" id="agents" data-screen="agents">
+    <div class="screen__col">
+      <header class="screen__head" data-reveal data-depth="0.04">
+        <p class="screen__eyebrow"><span class="badge" data-sq><i class="badge__dot badge__dot--live" aria-hidden="true"></i>Live</span><span>Agents</span></p>
+        <h2 class="screen__title">It acts for you. <span class="screen__sub">And it asks before it does.</span></h2>
+        <p class="screen__text">Agents take the busywork, from the inbox to the calendar to errands, and stop at anything that's yours to decide.</p>
+      </header>
+      <ul class="chips" data-reveal data-depth="0.06">
+        <li class="chip" data-sq>Ask ION<kbd data-sq>⌘K</kbd></li><li class="chip" data-sq>Summarize<kbd data-sq>⌘S</kbd></li><li class="chip" data-sq>Later<kbd data-sq>L</kbd></li>
+      </ul>
+      <article class="panel" data-sq data-reveal data-depth="0.1">
+        <div class="panel__head">
+          <h3 class="panel__title">Time saved today</h3>
+          <span class="badge" data-sq><span data-count="134" data-format="hm">2 h 14 m</span></span>
+        </div>
+        <div class="bars" data-bars='{"Today":{"values":[10,10,10,10,10,10,10,10,10,10,84,10,10,10,10,24,24,24,66,40,10,10,10,52,10,92,30,10,10,48,64],"axis":["6 AM","8 AM","10 AM","12 PM","2 PM","Now"],"now":30}}'>
+          <div class="bars__plot" aria-hidden="true"></div>
+          <div class="bars__axis"></div>
+        </div>
+        <p class="panel__note"><span data-count="3240">3,240</span> handled this week · 3 waiting for you</p>
+      </article>
+      <article class="panel" data-sq data-reveal data-depth="0.1">
+        <div class="panel__head">
+          <h3 class="panel__title">Golden time</h3>
+          <span class="badge badge--yellow" data-sq>Needs you · 3</span>
+        </div>
+        <div class="stat">
+          <p class="stat__value"><span data-count="78">78</span><small>%</small></p>
+          <p class="stat__label">handled while you focused</p>
+        </div>
+        <div class="ticks" data-ticks="48" data-on="37" aria-hidden="true"></div>
+        <p class="panel__note">22% needed you · they wait for you at 9:30</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<div class="stage" data-stage aria-hidden="true">
+  <p class="hero__title"><span>Hello,</span> <span>I'm ION</span></p>
+  <div class="frame-head" data-frame-head>
+    <span class="badge" data-sq><i class="badge__dot" aria-hidden="true"></i>ION OS</span>
+    <p class="frame-head__title">Everything around you, <span>in one quiet place.</span></p>
+  </div>
+</div>
+
+<script type="module" src="main.js"></script>
+```
+
+`.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap }`.
+
+---
+
+## 4. Header (`.hd`, `lib/header.js`)
+
+- `.hd`: `--hd-inset: 4px; --hd-h: calc(var(--u)*40 + var(--hd-inset)*2)`; `position:fixed; top:12px; left:0; right:0; z-index:10;
+  width:max-content; max-width:calc(100% − 24px); margin:0 auto; display:flex; align-items:center`; type
+  `var(--t-s)`, weight 500, line-height 1, `letter-spacing: var(--tr-s)`, nowrap.
+- `.hd__bar`: flex, centred, height `var(--hd-h)`, padding `var(--hd-inset)`, radius `var(--r-m)`, `--hd-ink: #c4c4ca`,
+  background `rgba(64,64,72,.55)`, `backdrop-filter: blur(calc(var(--u)*24)) saturate(1.4) brightness(.5)` (plus `-webkit-`).
+- `.hd__tile` (the mark): `40u × 40u`, radius `calc(var(--r-m) − var(--hd-inset))`, background `#46464d`, grid centred.
+  `.mark`: 3×3 grid of `4u` squares, `3u` gap; squares `--ink-3`, even children `--ink-2`, the 5th (centre) `--ink-1`.
+- `.hd__clock`: `margin-left: var(--s12)`, `var(--t-m)`, weight 400, `var(--tr-m)`, `tabular-nums`, `--ink-1`; `.hd__sec` colour `var(--hd-ink)`.
+- `.hd__rule`: `1px × 16u`, margin `0 var(--s16)`, `rgba(252,252,252,.2)`.
+- `.hd__status`: inline-flex, gap `var(--s8)`, `var(--hd-ink)`; `.hd__dot`: `6u` circle, `--cyan`, `animation: hd-pulse 1.8s ease-in-out infinite`
+  (`@keyframes hd-pulse { 50% { opacity: .35 } }`).
+- `.hd__nav`: flex, gap `var(--s16)`; links `var(--hd-ink)`, colour transition `var(--dur-ui) var(--ease-out)`, hover `--ink-1`.
+- `.hd__btn`: inline-flex, height `40u`, padding `0 var(--s16)`, concentric radius; transitions `transform var(--dur-press) var(--ease-out), background-color var(--dur-ui) var(--ease-out)`;
+  `:active { transform: scale(var(--press)) }`. `.hd__nav + .hd__btn { margin-left: var(--s16) }`, `.hd__btn + .hd__btn { margin-left: 4px }`.
+  `--card` variant: `#46464d` / `--ink-1`, hover `#52525a`. `--main`: `--yellow` / `--bg` text, hover `#ecf04a`. Hovers only under `(hover: hover) and (pointer: fine)`.
+- **Light state** (`.hd.is-light`, toggled by the OS section): bar `rgba(24,24,28,.72)`, rules `rgba(252,252,252,.16)`, tile and Sign in `#48484d`
+  (hover `#55555a`). `.hd__bar, .hd__clock, .hd__sec, .hd__status, .hd__nav a, .hd__rule, .hd__tile` transition
+  `background-color 400ms var(--ease-out), color 400ms var(--ease-out)`.
+- **Entrance:** `.js .hd { animation: hd-in var(--dur-in) var(--ease-expo) backwards }`, `hd-in` from `opacity:0; translateY(−var(--in-y)); blur(var(--in-blur))`.
+- **Responsive:** ≤ 1100px hide `.hd__status` and `.hd__rule--status`. ≤ 767px: `.hd { top:8px; left:8px; right:8px; width:auto; max-width:none; margin:0 }`,
+  `.hd__bar { flex:1 }`, hide rules, nav and Sign in; Join the waitlist `margin-left:auto`.
+- **Clock JS:** `Intl.DateTimeFormat('en-GB', { hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23' })`; write `HH:MM` into
+  `[data-hm]` (only when changed) and `:SS` into `[data-s]`; set `datetime` to ISO; reschedule with
+  `setTimeout(tick, 1000 − ms + 5)`; tick again on `visibilitychange` when visible. No `aria-live`.
+
+---
+
+## 5. Hero
+
+### Title (in the stage, behind the canvas)
+
+```css
+.hero__title {
+  position: absolute; z-index: 0; left: 0; right: 0; margin: 0;
+  top: calc(var(--bust-top, calc(107% - min(78%, 98.4vw))) + 40px);
+  transform: translateY(-50%);
+  font-family: var(--font-pixel); font-size: calc((100vw - 48px) / 6.536); font-weight: 400;
+  line-height: var(--lh-d1); letter-spacing: 0; text-transform: uppercase; text-align: center; white-space: nowrap;
+  color: var(--ink-2);
+  mask-image: radial-gradient(var(--hrx, 24vh) var(--hry, 30vh) at var(--hx, 50%) var(--hy, 130%), transparent 0%, transparent 64%, #000 100%);
+}
+```
+
+(The font size makes the ink span the screen exactly 24px off each edge: the line's ink is 6.536 em with .076 em bearings.)
+The radial mask cuts a soft window where the head stands in front: `main.js` updates `--hx, --hy, --hrx, --hry`
+from `cloud.onPlace` (skipped while `html.is-hero-out`): centre = the head's projected NDC converted to px inside the
+title's own box (`x = (ndc.x+1)/2·innerWidth − title.offsetLeft`, `y = (1−ndc.y)/2·innerHeight − (title.offsetTop − title.offsetHeight/2)`),
+radii `rx = headPx.w·0.5/0.64`, `ry = headPx.h·0.5·1.08/0.64`, all rounded to whole px, written only when changed.
+
+Phones (≤ 767px): `left: −.038em; font-size: calc((100vw − 48px) / 3.192); white-space: normal`, each `span` `display:block` (two lines).
+
+### Note (bottom-left)
+
+- `.hero__note`: `position:fixed; left:24px; bottom:24px; z-index:3`, `font-size: var(--t-l); line-height: var(--lh-l); letter-spacing: var(--tr-l)`.
+- `.hero__meta`: flex, wrap, centred, gap `var(--s16)`, `margin-bottom: var(--s24)`, `var(--t-s)` / `var(--lh-s)`, `--ink-3`, nowrap.
+- `.hero__lead`: margin 0, `--ink-1`, `text-wrap: balance`; its `span` is `display:block; color: var(--ink-3)`.
+  The result reads in three lines: "ION is the operating system" / "that sees you." / "It asks before it acts." (grey).
+- **Badge** (shared): inline-flex, centred, gap `var(--s8)`, height `32u`, padding `0 var(--s12)`, radius `var(--r-s)`,
+  background `rgba(252,252,252,.14)`, `backdrop-filter: var(--chip-blur)`, `var(--t-s)`, weight 500, line-height 1, `--ink-1`, nowrap.
+  `.badge__dot`: `6u` circle `--lavender`. `.badge__dot--live`: `--cyan` + the 1.8 s pulse. `.badge--quiet { color:#c4c4ca }`, `.badge--yellow { color: var(--yellow) }`.
+- Phones: the note becomes a glass card — `left/right/bottom: 8px; padding:16px; border-radius: var(--r-l); background: var(--glass); backdrop-filter: var(--glass-filter)`,
+  type `var(--t-m)`; meta `margin-bottom: var(--s12)`, meta and lead grey → `--ink-2`.
+
+### Entrance and exit
+
+- Entrance (once, `.js` only): title `title-in` (from `opacity 0; translateY(calc(−50% + var(--in-y))); blur(var(--in-blur))`), meta and lead
+  `block-in` (from `opacity 0; translateY(var(--in-y)); blur(...)`) with delays 60ms / 120ms; all `var(--dur-in) var(--ease-expo) backwards`.
+- **Exit on first scroll** (class `html.is-hero-out`, see §8): uses the individual `translate` / `scale` / `filter` / `opacity` properties.
+  - Resting transition (= the way back): `opacity, translate, scale, filter 1100ms var(--ease-expo), visibility 0s`; meta delay 80ms, lead 160ms.
+  - Out: `opacity:0; visibility:hidden`, transition `opacity 700ms cubic-bezier(.45,0,.55,1), translate/scale/filter 700ms var(--ease-out), visibility 0s 760ms`.
+    Title: `translate: 0 −4vh; scale: .97; filter: blur(16px)`. Meta and lead: `translate: 0 −16px; filter: blur(10px)`;
+    lead delays `70ms ×4, 830ms` (for visibility).
+- Reduced motion: no entrance; exit/return is opacity only, 200ms ease.
+
+---
+
+## 6. The bust renderer (`lib/cloud.js`)
+
+### Loading and placement
+
+- `loadPCD(url)`: `PCDLoader().loadAsync` → `geometry.rotateX(π)`, `rotateY(0.05)` (FACE_YAW), `rotateX(0.19)` (FACE_PITCH); compute the box;
+  centre y and z on the box, but **x on the head line**: split the top 45 % of the height into 48 rows, take each row's
+  `(minX+maxX)/2`, sort, take the median. Translate so that point is the origin. Return the raw `Float32Array`.
+- Constants: `FOV 30°`, `SIZE 0.78` (bust height / viewport height), `BLEED 0.07` (base sinks this share of the height below the bottom),
+  `WIDE 1.3` (max width in viewport widths), `POINT_SIZE 0.005`, `HEAD_Y 0.10` (head centre above the bust centre, model units),
+  camera near/far `0.01 / 40`.
+- `fit()`: `view = max(size.y / SIZE, size.x / (WIDE·aspect))`; camera at `z = view/2 / tan(FOV/2)`, looking at origin;
+  `headInRig = (0, HEAD_Y − box.min.y, 0)`; `heroY = (−view/2 − BLEED·view + headInRig.y) / (view/2)`;
+  `unitsPerPx = view / host.clientHeight`; set `--bust-top` on `<html>` to `(1 + BLEED − size.y/view)·100 %` (2 decimals);
+  re-`place()` the last pose with its last gaze/anchor.
+- **Rig**: a `Group` with `rotation.order = 'YXZ'`, pivot at the bust's base; the points mesh sits inside at `position.y = −box.min.y`.
+- `place(pose, gaze=[0,0,0], anchor=0)`: `pose = {x, y, scale, yaw, pitch, roll}` (head target in NDC).
+  Scale the rig; set rotation `pose + gaze·anchor`; `lift = headInRig·s` rotated by it; `half = (camera.z − lift.z)·tan(FOV/2)`;
+  `rig.position = (x·half·aspect − lift.x, y·half − lift.y, 0)`; then set the final rotation `pose + gaze` (full gaze).
+  `localPerPx = unitsPerPx / s`; `uUnits = localPerPx`; `uSize = POINT_SIZE·s`. Project the head (`cloud.head = (0, HEAD_Y, 0)`) to get
+  `headNdc`; `headPx = headSize·s / unitsPerPx` (headSize: x-span and height of the points above `HEAD_Y − (top − HEAD_Y)`);
+  `uHead = headNdc`, `uHeadR = max(headPx.h / clientHeight, 1e-3)`. Call `cloud.onPlace?.()`.
+
+### Renderer and glow
+
+- `WebGLRenderer({ antialias:false, alpha:true })`, pixel ratio `min(devicePixelRatio, 2)` (never changes), clear colour black alpha 0, no scene background.
+- `EffectComposer` on a `HalfFloatType` target (no MSAA): `RenderPass` → `UnrealBloomPass(strength 0.020, radius 0.9, threshold 0)` → `OutputPass`.
+- Patch the bloom composite: remove `bloomStrength` from `vec3 bloom = 3.0 * bloomStrength * (` and before `float bloomAlpha` insert
+  `float lum = max(dot(bloom, vec3(.2126,.7152,.0722)), 1e-5); bloom = bloomStrength * bloom * (pow(lum, 0.60) / lum);` (hue kept, no tint).
+- Bloom at CSS resolution: replace the 5 separable blur materials with kernels `[3, 5, 7, 9, 11]`; override `bloom.setSize(w,h)` to call the
+  original with `round(w/ratio), round(h/ratio)`; patch the high-pass to average 4 taps at `vUv ± uSrc` where `uSrc = (ratio/2/w, ratio/2/h)`.
+- Patch `OutputPass` after the `#ifdef SRGB_TRANSFER … #endif` block: `gl_FragColor.a = max(gl_FragColor.a, max(r, max(g, b)))`
+  (so the faint haze survives premultiplied compositing over the page).
+- `ResizeObserver` on the stage → `renderer.setSize(w, h, false)`, composer size and ratio, camera aspect, `uViewport = (w, h)`, `fit()`, render.
+
+### Particles (`grains` ShaderMaterial, `DoubleSide`)
+
+One instanced quad (corners ±1, indices `0 1 2 2 1 3`) per point; `aHome` = position, `aRef` = the point's texel centre in a
+square texture of side `2^ceil(log2(sqrt(n)))`. `frustumCulled = false`.
+
+Uniforms: `uState, uFlow` (liquid textures; a 1×1 zero float texture until the liquid exists), `uOrigin, uSpan` (wake field), `uUnits`,
+`uSize`, `uStreak 0.8`, `uViewport`, `uCenter (0, 0.10)`, `uRadius 0.40`, `uGrain 0.335`, `uScatter 0`, `uDim 0`, `uHead`, `uHeadR`, `uTime`.
+
+Vertex shader:
+- `st = texture(uState, aRef)` (xy offset px, zw velocity px).
+- Dust: `r = fract(sin(vec3(dot(aRef,(12.9898,78.233)), dot(aRef,(39.3468,11.135)), dot(aRef,(73.156,52.235)))) * (43758.5453, 24634.6345, 9631.7453))`;
+  `k = uScatter²`; `fling = normalize(r − .5 + 1e-3)·(.35 + .65·r.x)·0.05`; `drift = (sin(uTime·.7 + r.y·2π), cos(uTime·.6 + r.z·2π), 0)·0.01`;
+  `vDrop = step(1 − uScatter·0.7, r.z)`; `p = aHome + (st.xy·uUnits, 0) + (fling + drift)·k`.
+- Streak: project `p` and `p + velocity·uUnits`; `v` = their screen delta in px; `len = min(|v|·1.25, 18)·uStreak`;
+  half side `h = uSize·(1 − 0.45·uScatter) / (2·c.w) · .5·uViewport.y`; `vFade = smoothstep(0, 1.5, len)`;
+  axis = `normalize(mix((1,0), dir·sign(dir.x), vFade))`; quad corner `lc = position.xy·(h + len/2, h)`; offset
+  `axis·lc.x + perp·lc.y − dir·len/2`; `vTail = (dot(off, −dir) − h) / max(len, 1e-3)`; add the offset in clip space. `vNdc = c.xy/c.w`.
+- Colour: `t = distance(aHome.xy, uCenter) / uRadius`; `vGrad = ramp(t)`, `vTouched = touched(t)`;
+  `vInk = clamp(texture(uFlow, clamp((p.xy − uOrigin)/uSpan, 0, 1)).w, 0, 1)`.
+- The ramps are generated GLSL: start at the first stop, then for each stop `c = mix(c, stop, clamp((t − prev)/(pos − prev), 0, 1))` (flat outside, like CSS).
+  - `touched` stops (full design colours): `0 % #FFFFFF`, `32 % #C8A9EB`, `100 % #E2E626`.
+  - `ramp` stops = the same with OKLCH chroma × **0.6** (`soften`, lightness and hue kept, via OKLab; gives ≈ `#C2B0D7` and `#DFE389`).
+
+Fragment shader:
+- `discard` if `vDrop > .5` or `clamp(vTail,0,1)·.55·vFade > hash(gl_FragCoord.xy, (12.9898,78.233), 43758.5453)` (dithered tail).
+- `col = mix(vGrad, vTouched, vInk·0.6)`; film grain: `col = mix(col, overlay(col, vec3(hash(fragCoord, (39.3468,11.135), 24634.6345))), uGrain)`
+  with the standard overlay blend.
+- Veil (depth on the text screens): `r = length((vNdc − uHead)·(aspect, 1)) / uHeadR`; `edge = smoothstep(.3, 1.3, r)`;
+  `dir = −clamp(uHead.x/.3, −1, 1)`; `side = smoothstep(−.2, 1, dir·(vNdc.x − uHead.x))`;
+  `col *= (1 − uDim·0.1)·(1 − uDim·0.6·edge)·(1 − uDim·0.45·side)`.
+- Output `vec4(srgbToLinear(col), 1.)` then `#include <colorspace_fragment>`.
+
+---
+
+## 7. Motion of the bust (`lib/scroll.js`, `lib/cursor.js`, `lib/liquid.js`)
+
+### Scroll → pose (`scroll.at(scrollY, heroY)`)
+
+Measure the tops of `[data-screen="os"]`, `memory`, `agents` (`getBoundingClientRect().top + scrollY`) on body resize; `vh = innerHeight`.
+`smooth(a, b, v)` = smoothstep; `around(top, [a, b]) = smooth(top + a·vh, top + b·vh, y)`.
+
+```
+LEFT  = { x: −0.66, y: 0.64, scale: 3.3, yaw: 0.48, pitch: 0.03, roll: −0.28 }
+RIGHT = { x: +0.66, y: 0.64, scale: 3.3, yaw: −0.48, pitch: 0.03, roll: +0.28 }
+CENTER_DROP = 0.08; OS_IN = [0.12, 0.8]; OS_OUT = [2.2, 3.2]; TO_LEFT = [−1, −0.2]; WINDOW = [−0.6, 0.1]; CONDENSE = 0.42
+
+inOS  = around(osTop, OS_IN);  outOS = around(osTop, OS_OUT);  toLeft = around(memoryTop, TO_LEFT)
+u       = clamp((y − (agentsTop + WINDOW[0]·vh)) / ((WINDOW[1] − WINDOW[0])·vh), 0, 1)
+side    = smooth(0.3, 0.7, u)
+scatter = smooth(0, 0.4, u) · (1 − smooth(0.6, 1, u))
+centre  = { x: 0, y: heroY − CENTER_DROP·inOS·(1 − outOS), scale: 1, yaw: 0, pitch: 0, roll: 0 }
+for each key: screen = LEFT + (RIGHT − LEFT)·side;  pose = centre + (screen − centre)·toLeft
+pose.scale *= 1 − CONDENSE·scatter
+return { pose, scatter, hero: 1 − inOS, dim: toLeft }
+```
+
+### The loop (`initCursor(cloud, scroll)`, after the model loads)
+
+- Springs: every pose key on `POSE {k 30, c 11}`; `dust` on `{k 26, c 10}`; hero weight and `dim` on POSE; gaze `yaw, pitch` on
+  `TURN {k 110, c 15}`, `roll` on `SWAY {k 45, c 9}`; float `fx, fy` on `FLOAT {k 10, c 6}`; gradient centre `gx, gy` on `GLOW {k 18, c 8}` (eps 1e-5; others 1e-4).
+- Each frame: read the canvas's on-screen rect from `cloud.stageBox` (no layout reads: `width = W·s`, `left = (W − width)/2 + tx`, same for y);
+  set targets from `scroll.at`; step springs (reduced motion: snap, no dust); if the pointer is on, recompute the gaze target.
+- **Gaze (hero):** ray from the camera through the pointer (using that rect), intersect the plane `z = D` (`D = 0.41`);
+  eye = head + points.position + rig.position; `yaw = clamp(atan2(hit.x − eye.x, D), ±0.6)`, `pitch = clamp(atan2(eye.y − hit.y, D), −0.35, +0.3)`;
+  targets multiplied by the hero weight; `roll = −yaw·0.18`.
+- **Float (screens):** `fx = clamp(px/innerWidth·2 − 1)`, `fy = clamp(1 − py/innerHeight·2)`; weight `f = 1 − hero`.
+- `cloud.place({ x: pose.x + fx·0.035·f, y: pose.y + fy·0.05·f, scale, yaw: pose.yaw + fx·0.07·f, pitch: pose.pitch − fy·0.04·f, roll }, [pitch, yaw, roll], f)`.
+- Uniforms: `uScatter = dust`, `uDim = dim`, `uTime = clock (s)`.
+- **Gradient centre:** pointer ray into the points' local space ∩ plane z = 0 → clamp to the box ± 0.1 → `gx, gy` targets; head when the pointer is off.
+- Stays awake while any spring moves, dust > 1e-3, or the liquid is running. Starts with `snap()` (a mid-page load starts in its pose).
+- Pointer input only under `(hover: hover) and (pointer: fine)` and no reduced motion, `pointerType !== 'touch'`. `pointerleave` on `<html>`
+  or `pointerout` with no `relatedTarget` eases gaze back to 0. If either media query flips to "off" mid-session: reset everything to rest at once.
+
+### Liquid (`lib/liquid.js`, created lazily on the first live pointer move)
+
+Port of the cursor interaction from the reference pointer-liquid design, at half force. `GPUComputationRenderer(side, side)`, `HalfFloatType`.
+Home texture (Float, RGBA): `(x, y, random(), 1)` per point. Wake field covers a square of local xy:
+`span = max(box w, box h) + 2·0.15`, `origin = box centre − span/2`. Two variables: `flow` (depends on itself, linear filter) and
+`state` (depends on itself and flow).
+
+Per frame (from `cursor.js`), with `f = clamp(dt·60, .25, 3)`:
+- Eased pointer: `m += (p − m)·(1 − (1 − 0.22)^f)`; presence eases toward 1 at 0.1 / toward 0 at 0.035 (same per-frame formula);
+  a pointer still for 1500 ms counts as gone; the sim keeps running 270 frames after presence hits 0.
+- Wake velocity: local-xy pointer delta / localPerPx / f, clamped ±60, smoothed `wake += (v − wake)·.5`; passed as `wake/40` clamped ±1.
+- `time += f/60·(1 + presence·1.6)`.
+- Uniforms: `uMouse` (local xy), `uVel`, `uPresence`, `uUnits = localPerPx`, `uDecay = .968^f`, `uInkDecay = .97^f`, `uDt = f`, `uTime`,
+  `uRadius 150`, `uInkRadius 110`, `uStrength 0.5`, `uSpread 1`, `uTurb 0.6`, `uReturn 1.2`.
+
+FLOW shader (xy velocity −1…1, z energy, w ink):
+```glsl
+vec2 suv = uv - texture2D(flow, uv).xy * texel * 2.5;
+vec4 c = texture2D(flow, suv) * .52 + .12 * (4 neighbours of suv);
+vec2 d = (uOrigin + uv * uSpan - uMouse) / uUnits;
+float f = exp(-dot(d,d) / (uRadius*uRadius)) * uPresence;
+v += uVel * f * .22;  p = max(p, f * clamp(length(uVel) * 2.5, 0., 1.));
+v *= uDecay; p *= uDecay; v = sign(v) * max(abs(v) - 1.2/127., 0.); p = max(p - 1.2/255., 0.);
+ink = max(max(c.w * uInkDecay - .002, 0.), exp(-dot(d,d) / (uInkRadius*uInkRadius)) * uPresence);
+gl_FragColor = vec4(clamp(v, -1., 1.), p, ink);
+```
+
+SIM shader (xy offset px, zw velocity px), skipping texels with `home.w <= 0`; `sd = home.z`, `light = .45 + sd·1.1`:
+```glsl
+vec2 p = hm.xy / uUnits + off;
+vec4 fl = texture2D(flow, clamp((hm.xy + off * uUnits - uOrigin) / uSpan, 0., 1.));
+vec2 toM = p - uMouse / uUnits; float r2 = dot(toM, toM);
+float f = exp(-r2 / (uRadius*uRadius)) * uPresence; vec2 n = toM * inversesqrt(r2 + 1.);
+float e = clamp(fl.z * 2. + f, 0., 1.);
+acc  = n * f * 1.25 * uStrength * uSpread * light;
+acc += vec2(-n.y, n.x) * f * 1.45 * uStrength * uSpread * (.4 + sd);
+acc += (fl.xy * 42. * uSpread * light - vel) * e * .08;
+vec2 q = p * .0095 + vec2(uTime * .35, -uTime * .2);
+acc += (curl(q) + .5 * curl(q * 2.3 + 7.1)) * e * 1.2 * uSpread * uTurb * light;
+acc -= off * (.006 + .02 * uReturn) * (.65 + sd * .7);
+vel += acc * uDt; vel *= pow(mix(.93, .955, e), uDt); off += vel * uDt;
+if (dot(off,off) < .0004 && dot(vel,vel) < .0004) { off = vec2(0.); vel = vec2(0.); }
+```
+`curl` = 2D curl of a quintic value noise (`hash(p): p = fract(p·(123.34, 456.21)); p += dot(p, p + 45.32); fract(p.x·p.y)`), epsilon .35.
+After each compute, point `uState` / `uFlow` of the grains at the current render targets.
+
+---
+
+## 8. OS section — the zoom-out (`lib/frame.js`, CSS)
+
+### Layout
+
+- `.hero { position: relative; height: 0 }` (takes no room), so `.os` pins from the page top.
+- `.os { position: relative; z-index: 3; height: 420vh }`; `.os__pin { position: sticky; top: 0; height: 100vh; overflow: clip; pointer-events: none }`.
+- `.stage.is-framed { overflow: hidden; background: var(--site) }`.
+- `.frame-head`: absolute, z 1, `top: 5.5%`, full width, grid centred, gap `var(--s16)`, `opacity: 0`, `transform-origin: 50% 0`, centred text.
+  `.frame-head__title`: margin 0, `var(--t-l)` / `var(--lh-l)` / `var(--tr-l)`, `--ink-1`; its span block `--ink-3`.
+
+### Progress
+
+`s = clamp((scrollY − osTop) / innerHeight, 0, END)` with `PIN_VH 1.7`, `HOLD 0.5`, `OUT_VH 1`, `END = 3.2`. The displayed `p.x` follows
+`s` on a spring `{k 26, c 10}` (reduced motion: instantly). Then:
+```
+q = clamp(p.x / 1.7, 0, 1)                        // IN
+o = clamp((p.x − 1.7 − 0.5) / 1, 0, 1)            // OUT
+seg(v, [a,b]) = clamp((v − a)/(b − a), 0, 1)
+inOut(t) = t < .5 ? 4t³ : 1 − (−2t + 2)³/2;  out(t) = 1 − (1 − t)⁴;  expo(t) = t ≥ 1 ? 1 : 1 − 2^(−10t);  smooth = smoothstep
+```
+- **Hero exit:** toggle `html.is-hero-out` when the raw `s > 0.05`; remove it when `s ≤ 0.03` (hysteresis).
+- **Frame:** `k = inOut(seg(q, [0.06, 0.5]))·(1 − inOut(o))`; `scale = 1 − (1 − 0.56)·k`; framed = `q > 0 && o < 1` → class `is-framed`.
+  `stage.style.transform = translate(fx, fy) scale(scale)` (about the window's centre, so it ends centred at 22–78 vw × 22–78 vh),
+  `border-radius = 28·k/scale px` (28px as seen). Frame drift `fx, fy = drift·(−4)·k` px. Write `cloud.stageBox = {s, tx, ty}` and `cloud.framed`.
+  When not framed: clear transform and radius.
+- **Ground:** `g = seg(q, [0.1, 0.42])·(1 − seg(o, [0.3, 0.9]))`; `html.style.backgroundColor = rgb(lerp(0,0,0 → 232,229,239, g))` (empty when g = 0).
+  `.hd.is-light` when `g > 0.5`.
+- **Headline:** `e = out(seg(q, [0.2, 0.44]))·(1 − smooth(seg(o, [0, 0.4])))`; opacity `e`;
+  transform `translateY((1 − e)·24px) scale(1/0.56)`; `filter: blur((1 − e)·10px)` while `0 < e < 1`.
+- **Widgets** (`.ow`, each with `data-at`): `K0 3.6`, `LEN 0.22`, `OUT_LEN 0.45`, blur 44px, `BLUR_EASE 0.55`, `GLASS_K 1.5`.
+  Exit order: sort by `data-at` descending; `outAt_i = i·(1 − 0.45)/(n − 1)`. Per widget:
+  ```
+  t = seg(q, [at, at + 0.22]);  tOut = seg(o, [outAt, outAt + 0.45])
+  e = expo(t);  eOut = tOut^2.2
+  k = 1 + (K0 − 1)·((1 − e) + eOut)                         // nearer the eye = bigger and further from centre
+  here = e·(1 − tOut)
+  x = cx·(k − 1) + springX·drift·here;  y = cy·(k − 1) + springY·drift·sway·here   // cx, cy = widget centre − window centre
+  opacity = smooth(clamp(t/0.45, 0, 1))·(1 − smooth(clamp((tOut − 0.3)/0.7, 0, 1)))
+  blur = flying ? 44·((k − 1)/(K0 − 1))^0.55 : 0           // flying = 0<t<1 or 0<tOut<1
+  glass = clamp((1.5 − k)/(1.5 − 1), 0, 1)
+  ```
+  Write `opacity`, `transform: translate(x,y) scale(k)`, `filter: blur()` (only if > .05), `--glass = glass`, `--solid = 1 − glass`;
+  toggle `.has-glass` when `glass > 0`. Only write when the composed string changes.
+  On landing (`t === 1`): the chart's `.minibars` gets `is-grown`; the composer types its `data-type` text
+  (first after 350ms, then 34ms per character, removing `is-empty`). On leaving (`t < 1`): undo (bars shrink, text back to "Ask ION anything…", `is-empty`).
+  Reduced motion: widgets only fade (`e`, `eOut` and opacity step), glass = 1, text appears whole.
+- **Pointer drift:** pointer position in −1…1; frame drift spring `{k 16, c 8}`; each widget its own spring with stiffness
+  `7 + 13·(drift − minDrift)/(maxDrift − minDrift)` and `c = 2·√k·0.95`; vertical shares `SWAY_Y = [1, .7, 1.15, .8, 1.2, .6, .9]` by DOM index.
+  Ignore the pointer while `p.x ≤ 0`, on touch, or under reduced motion.
+- rAF on demand (scroll, resize, pointermove); stops when `p` and all drift springs settle. Re-measure widget centres
+  (`offsetLeft + offsetWidth/2 − innerWidth/2`, same for y) on resize. A load mid-section starts at `p.x = s`.
+
+### Widget styling
+
+```css
+.ow { position: absolute; isolation: isolate; will-change: transform, opacity; contain: layout style; opacity: 0;
+      border-radius: var(--r-m); background: rgba(28, 28, 32, calc(.8 * var(--glass, 0))); box-shadow: var(--l-lift);
+      color: var(--ink-1); font-size: var(--t-s); line-height: 1.2; letter-spacing: var(--tr-s);
+      --ink-2: #cacad0; --ink-3: #b4b4ba; }
+.ow::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: rgb(30, 30, 34); opacity: var(--solid, 1); pointer-events: none; }
+.ow.has-glass { backdrop-filter: blur(calc(var(--u) * 16 * var(--glass))) saturate(calc(1 + .4 * var(--glass))); }
+```
+
+Placement (vw/vh about the window; sizes in `u`):
+
+| widget | position | size / layout | z |
+|---|---|---|---|
+| `.ow--img-b` People | `left 12vw; top 25vh` | `200u × 170u` | 4 |
+| `.ow--img-c` Places | `left 15.5vw; top 47vh` | `160u × 136u` | 6 |
+| `.ow--add` | `left 5vw; top 48vh` | flex, gap `s12`, padding `6u 6u 6u s12`, weight 500 | 7 |
+| `.ow--tools` | `left 61vw; top 25vh` | flex, gap `6u`, padding `6u` | 3 |
+| `.ow--chart` | `left 73vw; top 33vh` | grid gap `s12`, width `250u`, padding `s16 s16 s12`, radius `--r-l` | 5 |
+| `.ow--composer` | `left 0; right 0; margin 0 auto; top calc(78vh − 20px)` | grid gap `s12`, width `560u`, padding `s16`, radius `--r-l` | 8 |
+| `.ow--toast` | `left 70vw; top 68vh` | flex, gap `s12`, height `48u`, padding `0 s16 0 s12`, nowrap | 9 |
+
+- `.ow--img`: grid rows `1fr auto`, gap `s8`, margin 0, padding `6u 6u s8`, radius `--r-l`; `.ph` block, 100 %×100 %, `object-fit: cover`, radius `--r-l − 6u`;
+  figcaption flex space-between, padding `0 6u`, number in `--ink-3`.
+- `.lkey`: `34u` square, radius `--r-s`, `--fill-1`; `.lkey--send`: `--ink-1` background, `--bg` colour.
+  `.lchip`: height `32u`, padding `0 s12` (`6u` right when it has a kbd), gap `s8`, radius `--r-s`, `--fill-1`;
+  its `kbd`: height `20u`, padding `0 6u`, radius `--r-xs`, `rgba(0,0,0,.28)`, `--ink-2`, `font: inherit`.
+- `.ow__head`: flex space-between, weight 500; `.ow__up` weight 400 `--ink-2`.
+- `.minibars`: flex, bottom-aligned, gap `6u`, height `84u`; bars `flex:1; height: calc(var(--h)*1%)`, radius `3u`, `--lavender` (`.now` `--yellow`),
+  `transform-origin: bottom; transform: scaleY(.08); transition: transform 300ms var(--ease-out)`; `.is-grown` → `none`,
+  `900ms var(--ease-expo)` delayed `j·40ms` (j = index 0…6). `.minibars__axis` space-between, `--ink-3`.
+- `.composer__text`: min-height two lines of `--t-m`, `--t-m`/`--lh-m`/`--tr-m`, `--ink-1`; `.is-empty [data-typed]` `--ink-3`.
+  `.caret-text`: `1.5px × 1.1em`, margin-left 1px, `vertical-align: −.15em`, `--ink-1`, `blink 1s steps(1) infinite` (`50% { opacity: 0 }`).
+  `.composer__bar` flex gap `6u`; `.composer__end` flex gap `6u`, `margin-left: auto`;
+  `.composer__glow`: absolute, `left/right: s24; bottom: 0`, height `2u`, pill, `var(--grad-golden)`.
+- CSS-drawn glyphs: `.plus` (`12u × 1.5px` bar + a rotated copy), `.mic` (`7u × 11u` 1.5px outline capsule, radius `4u`, `margin-bottom 4u`, plus a
+  `11u × 5u` U-shaped stand under it), `.arrow` (`8u` square, 1.5px left+bottom borders; `--up`: `translateY(2u) rotate(135deg)`),
+  `.done` (`20u` lavender circle with a 1.5px `--bg` check: `left 34%; top 24%; 26% × 44%`, right+bottom borders, rotated 45°).
+
+---
+
+## 9. Onboarding screens (Memory, Agents)
+
+### Layout and pieces
+
+- `.screen { position: relative; z-index: 2; padding: 64vh 0 24vh }`; `.screen--left { padding-bottom: 48vh }`.
+- `.screen__col { display: grid; gap: var(--s72); width: min(calc(var(--u)*520), 38vw) }`; Memory column `margin-left: 56vw`; Agents `margin-left: 24px`.
+- `.screen__head` grid gap `s24`; `.screen__eyebrow` flex, gap `s16`, `--t-s`/`--lh-s`, `--ink-3`;
+  `.screen__title` `--t-l`, weight 400, `--lh-l`, `--tr-l`, `--ink-1`, `.screen__sub` block `--ink-3`; `.screen__text` `max-width: 40ch`, `--ink-2`.
+- `.chips` flex wrap gap `s8`, no list style. `.chip`: inline-flex, gap `s8`, height `36u`, padding `0 s12` (right `s8` with a kbd), radius `--r-s`,
+  `rgba(252,252,252,.14)` + `--chip-blur`, `--t-s`, line-height 1, `--ink-1`; `kbd`: height `22u`, padding `0 s8`, radius `--r-xs`, `--fill-2`, `#dadae0`.
+- `.panel`: grid gap `s24`, padding `s24`, radius `--r-l`, background `rgba(40,40,44,.56)` + `--glass-filter`, and locally `--ink-3: #94949a`.
+  `.panel__head` flex space-between centred gap `s16`; `.panel__title` `--t-m` weight 500 `--ink-1`; `.panel__note` `--t-s` `--ink-3`;
+  `.panel .chips { margin-top: −s8 }`.
+- `.seg`: inline-flex, gap and padding `s4`, radius `--r-s`, `--fill-1` + chip blur. `.seg__btn`: height `28u`, padding `0 s12`, no border, radius `--r-xs`,
+  transparent, `500 --t-s/1`, `--ink-2`; `.is-on` `--fill-2` / `--ink-1`; hover `--ink-1`; transitions `--dur-ui --ease-out`.
+- `.bars` grid gap `s12`; `.bars__plot` flex bottom gap `4u` height `140u`; bars `flex:1`, `height: var(--h)%`, `min-height: 14u`, radius `2u`, `--fill-1`;
+  `.on` lavender, `.now` yellow; `scaleY(0)` from the bottom, out transition `var(--rv-out) var(--ease-out)`;
+  `.is-in .bars__plot.is-grown i` → `none`, `900ms var(--ease-expo)` delayed `320ms + j·18ms`.
+  `.bars__axis` flex space-between, `--t-s`, `--ink-3`; the "Now" label (`.is-now`) uppercase, `--tr-caps`, `--lavender`.
+- `.track`: flex, height `28u`, pill, `--fill-1`, overflow hidden; segment `width: var(--w)%`, `background: var(--c)`, `clip-path: inset(0 100% 0 0)` →
+  in a revealed panel `inset(0)` over `1400ms var(--ease-expo) 420ms`. `.legend` flex wrap gap `s8 s24`, `margin-top: −s12`, `--t-s`, `--ink-2`; dots `8u` circles `var(--c)`.
+- `.stat` grid gap `s4`; `.stat__value` `--t-l`, tabular nums, `--ink-1`; its `small` `margin-left 2u`, `--t-m`, `--ink-2`; `.stat__label` `--t-s` `--ink-2`.
+- `.ticks` flex space-between height `28u`; ticks `2u` wide, radius `1u`, `--fill-2`, `scaleY(.4)`; in → `none`, `800ms var(--ease-expo)` delayed
+  `380ms + j·14ms` (transform and colour), `.on` lavender, `.now` yellow.
+
+### Reveal (`lib/reveal.js`)
+
+- Bars: build one `<i>` per value with `--h`, `--j`; class `now` at index `now`, `on` if before it and value > 10. Axis spans; "Now" gets `is-now`.
+  On build: remove `is-grown`, then add it after two rAFs. The segmented control switches the data set (and `aria-selected`).
+- Ticks: `data-ticks` count; the first `data-on` get `on`, the rest `now`.
+- Titles split into word spans (`.w`, `aria-hidden`), the full text as `aria-label` on the title.
+- Cascade per `[data-reveal]` block (`--d` in ms): a panel itself gets `rv rv--panel`, `--d: 0`, and its parts start at 160.
+  Parts in DOM order: `.screen__eyebrow`, `.screen__title .w` (`rv--word`), `.screen__text`, `.chips > li` (`rv--chip`), `.panel__head`, `.panel__text`,
+  `.stat`, `.bars`, `.ticks`, `.track`, `.legend`, `.panel__note`. Steps: words 45ms, chips 60ms, others 90ms; +60ms after the last word.
+- `IntersectionObserver` with `rootMargin: '-12% 0px -20% 0px'`: intersecting → `is-in` and restart counters; leaving → set `data-dir` to
+  `up` if it left above the root's middle else `down`, remove `is-in`.
+- CSS (`:root { --rv-in: 1200ms; --rv-out: 520ms }`):
+  ```css
+  .js .rv { --rv-y: 32px; opacity: 0; transform: translateY(var(--rv-y)); filter: blur(calc(var(--u) * 12));
+            transition: opacity var(--rv-out) var(--ease-out), transform var(--rv-out) var(--ease-out), filter var(--rv-out) var(--ease-out); }
+  .js [data-dir="up"]:not(.is-in) .rv, .js .rv[data-dir="up"]:not(.is-in) { --rv-y: -24px; }
+  .js .rv--word { display: inline-block; --rv-y: .35em; filter: blur(calc(var(--u) * 10)); }
+  .js .rv--chip, .js .rv--panel { filter: none; }
+  .js .rv--panel { --rv-y: 48px; }
+  .js .is-in .rv, .js .rv.is-in { opacity: 1; transform: none; filter: none;
+            transition: opacity var(--rv-in) var(--ease-expo), transform var(--rv-in) var(--ease-expo), filter var(--rv-in) var(--ease-expo);
+            transition-delay: calc(var(--d, 0) * 1ms); }
+  .js .is-in .rv--word { transition-duration: 1100ms; }
+  ```
+- Counters (`[data-count]`): from 0 on every entry, 250ms delay, 1400ms, expo out; format `en-US` thousands, or `data-format="hm"` → `"2 h 14 m"`.
+- Parallax: `[data-depth]` blocks get `translate: 0 (−(mid − (scrollY + innerHeight/2))·depth)px` on scroll (rAF-throttled), skipped when more than
+  1.5 window heights away; mids re-measured (with `translate` cleared) on body resize.
+- Reduced motion: `.rv` only fades (200ms, no delay); bars, ticks, track, minibars, caret are static; no counting, no parallax.
+
+---
+
+## 10. Bottom veil (`lib/veil.js`)
+
+A fixed strip `left:0; right:0; bottom:0; height:16vh; z-index:2; pointer-events:none`, appended to `body`, containing 6 absolutely filled layers with
+`backdrop-filter: blur(.75 | 1.5 | 3 | 6 | 12 | 24 px)`. Layer `i` (of n = 6) is masked with
+`linear-gradient(to bottom, transparent i/n, #000 (i+1)/n, #000 (i+2)/n, END (i+3)/n)` (percentages capped at 100 %), where END is `#000` when
+`i + 3 > n`, else `transparent`. No tint. Present on every screen.
+
+---
+
+## 11. `main.js` wiring (order matters)
+
+1. `initHeader('[data-header]')`; `squircles()`; `initReveal()`.
+2. `cloud = initCloud('[data-stage]')`; `addVeil(document.body)`.
+3. `scroll = initScroll({ os, memory, agents })` from the `data-screen` sections.
+4. `initFrame({ section: os, stage, cloud, head: '[data-frame-head]', header: '[data-header]' })`.
+5. `cloud.ready.then(() => { const cursor = initCursor(cloud, scroll); … })`.
+6. The hero title's mask window via `cloud.onPlace` (§5), measured on body resize.
+7. `window.__site = { cloud, header }`. Dev: `?at=0.5` scrolls to that share of the page height on load (`history.scrollRestoration = 'manual'`).
+
+---
+
+## 12. Acceptance checks
+
+- At 1470×956: the title's ink sits 24px from both edges; the head rises into the lower half of the middle letters, which melt away softly around it.
+- At rest the bust is lavender-grey at the head fading to pale yellow-green at the shoulders, with a faint same-coloured haze; the pointer
+  brings a white spot, turns the body (head first, body after), and swirls the points into streaks that settle back over ~1–2 s.
+- First wheel step: the title and note dissolve upward (700ms); ~one more step and the screen shrinks into a 28px-rounded frame on `#e8e5ef`, the
+  header turns dense dark glass, "● ION OS / Everything around you, in one quiet place." rises in, and the seven widgets fly in huge and blurred
+  from beyond the edges (toolbar .40 → People .42 → chart .46 → Places .48 → Add image .50 → composer .58 → toast .72), settle into glass, and
+  drift apart with the pointer. The composer types its sentence. Scrolling on, they fly back out past the camera (latest first), the ground goes
+  black and the frame grows back to full screen. Scrolling back replays it all in reverse.
+- Memory: the bust glides into the top-left at 3.3×, looking right, dimmed under a veil toward the text; blocks cascade in; bars grow; Day/Week/Month switch works.
+- Agents: the bust bursts into dust (70 % of grains drop out, the rest shrink), crosses as a condensed cloud, re-forms top-right looking left.
+- No horizontal scroll, no console errors, idle page uses no rAF.
