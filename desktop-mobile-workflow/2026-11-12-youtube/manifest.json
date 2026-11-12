@@ -1,0 +1,17 @@
+{
+  "title": "Desktop and mobile workflow",
+  "snapshot_date": "2026-11-12",
+  "kind": "associated YouTube references",
+  "files": [
+    {
+      "path": "prompt.md",
+      "bytes": 5933,
+      "sha256": "f7b825d63d6061c2bde17def5f9f5263ded35857aac8962a6f482403a14a7984"
+    },
+    {
+      "path": "youtube-references.json",
+      "bytes": 173,
+      "sha256": "07e1cfaa426f9d6c6e8e016c3ee9cd0fc9832477ba30fcaf2c57f372b95a35f4"
+    }
+  ]
+}

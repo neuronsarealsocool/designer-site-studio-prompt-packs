@@ -1,0 +1,17 @@
+{
+  "title": "Alpine editorial retreat",
+  "snapshot_date": "2026-11-12",
+  "kind": "associated YouTube references",
+  "files": [
+    {
+      "path": "prompt.md",
+      "bytes": 5826,
+      "sha256": "02d4d102b00e307564e37c07263f32b91fd1b4dff9bae6594cfff0e90623a911"
+    },
+    {
+      "path": "youtube-references.json",
+      "bytes": 173,
+      "sha256": "309012e659bb797c20d0727b21237ce636b6e22ea6188a0b58a5605514118c7f"
+    }
+  ]
+}

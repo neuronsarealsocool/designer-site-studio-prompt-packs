@@ -1,0 +1,17 @@
+{
+  "title": "Cinematic site workflow",
+  "snapshot_date": "2026-11-12",
+  "kind": "associated YouTube references",
+  "files": [
+    {
+      "path": "prompt.md",
+      "bytes": 6729,
+      "sha256": "a454ca1cfd279da8c696d52693d6acb0c63ddd92b0a9fea15cd649b5b452bfa7"
+    },
+    {
+      "path": "youtube-references.json",
+      "bytes": 173,
+      "sha256": "c162c16f3b103881bff58c0c5c6ecb5b19ef4ed3afd6539acdf98f9bae53beb5"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "title": "Lake cabin retreat",
+  "snapshot_date": "2026-11-12",
+  "kind": "associated YouTube references",
+  "files": [
+    {
+      "path": "prompt.md",
+      "bytes": 8404,
+      "sha256": "e14fea0164ef6b5b3ae6c001cf982c3b7d2ad91d8efc7e04f900042251661844"
+    },
+    {
+      "path": "youtube-references.json",
+      "bytes": 173,
+      "sha256": "0290f03e8c79540b0bff88c02a5ad6f9993c560732527cbe2836df09419d3016"
+    }
+  ]
+}

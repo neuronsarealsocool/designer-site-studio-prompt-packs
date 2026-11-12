@@ -1,0 +1,17 @@
+{
+  "title": "Coffee product carousel",
+  "snapshot_date": "2026-11-12",
+  "kind": "associated YouTube references",
+  "files": [
+    {
+      "path": "prompt.md",
+      "bytes": 5850,
+      "sha256": "8ed8f820f9ef2de9510407d557ed128e2dd801079645998a10b1267dbd9190ad"
+    },
+    {
+      "path": "youtube-references.json",
+      "bytes": 173,
+      "sha256": "a531765636a23d6d3952682b1ee5d9d63aa60c6bd03692ffd676cc67c6ac3e73"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "title": "Architectural landscape journey",
+  "snapshot_date": "2026-11-12",
+  "kind": "associated YouTube references",
+  "files": [
+    {
+      "path": "prompt.md",
+      "bytes": 6505,
+      "sha256": "612407067de1706a2a34829c2cdd0bd0ecad984d25dc04030e046bf927c05f69"
+    },
+    {
+      "path": "youtube-references.json",
+      "bytes": 173,
+      "sha256": "979afed1e331247fcffbcc73e05b276589667c7780fb16c9b0ff30f8c6849705"
+    }
+  ]
+}
