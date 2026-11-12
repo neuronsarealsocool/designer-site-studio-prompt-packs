@@ -1,0 +1,42 @@
+{
+  "title": "Curved film archive",
+  "snapshot_date": "2026-11-12",
+  "kind": "neutral expanded working backup",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 1260,
+      "sha256": "1d21c6a40b49e46ccd2d8104ab12289752b39cb5ff486fe09ab0e67f8f6eedbe"
+    },
+    {
+      "path": "media/1d302b88229f3e.webp",
+      "bytes": 897492,
+      "sha256": "1d302b88229f3e89006d574d8c8719ed8418bc0c62b85bc1c03d92e7238327df"
+    },
+    {
+      "path": "media/906f9a9a8b2cd8.webp",
+      "bytes": 611454,
+      "sha256": "906f9a9a8b2cd89a511f47688bef1f4a8067593e6cbfa276afab052be9d43941"
+    },
+    {
+      "path": "media/bef5d7e9e251fd.webp",
+      "bytes": 877104,
+      "sha256": "bef5d7e9e251fdf01c3fea1aae055bd5059f0b1344088479d94fd290d87df5ba"
+    },
+    {
+      "path": "media/d12de9fb113a52.webp",
+      "bytes": 1119020,
+      "sha256": "d12de9fb113a52de8bcc2f13b97b4725b2e54a1d9f92a1dae35d575a3ea5d966"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 32621,
+      "sha256": "1e4aaf153ac847951815796be19d643435d3037865436bebc8f73a106194647a"
+    },
+    {
+      "path": "prompts/detailed-prompt-01.txt",
+      "bytes": 18592,
+      "sha256": "f52dfc3a225e5471ff8b8f0af02866da98bf8457ea51f936a345d9cdb28ac47c"
+    }
+  ]
+}
