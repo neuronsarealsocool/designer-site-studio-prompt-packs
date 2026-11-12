@@ -1,0 +1,17 @@
+{
+  "title": "Lake cabin retreat",
+  "snapshot_date": "2026-11-12",
+  "kind": "live example link update",
+  "files": [
+    {
+      "path": "prompt.md",
+      "bytes": 8317,
+      "sha256": "058f004790c70910f9ec93e61775902e86fc954ff76c8285121798d7124f79b7"
+    },
+    {
+      "path": "reference.json",
+      "bytes": 154,
+      "sha256": "6741d93b334ca24f9e1973b752ff3b229f1c3651da6307bc2953917103fd0368"
+    }
+  ]
+}
