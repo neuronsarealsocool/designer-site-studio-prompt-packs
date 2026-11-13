@@ -1,0 +1,37 @@
+{
+  "title": "Lake cabin retreat - Incomplete Prompt - Watch YouTube Video First",
+  "snapshot_date": "2026-11-13",
+  "kind": "incomplete prompt wording and approved hero media",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 809,
+      "sha256": "936afd88dd85596f790e21a8e37728d229f6aceeb4aa314c2dedb29827dea3e0"
+    },
+    {
+      "path": "media/a7fbc22c28bd68.mp4",
+      "bytes": 2215955,
+      "sha256": "a7fbc22c28bd68962b6c301416b8846b805b59feb9f7566007b5408109f35cc2"
+    },
+    {
+      "path": "media/a8457947339765.jpg",
+      "bytes": 1014583,
+      "sha256": "a84579473397657d9c25f4a515cc1a1c14bf26ee544127f47c556f9d1f38b290"
+    },
+    {
+      "path": "original/source-loop.mp4",
+      "bytes": 2615203,
+      "sha256": "29e63092dac85df7c48151b42602b186920e0169552fb5fd47b9e6993282e902"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 9602,
+      "sha256": "10a605388fc4c9be584365396d497c978837bfb018995dae38cb1638173839eb"
+    },
+    {
+      "path": "references.json",
+      "bytes": 297,
+      "sha256": "174cbb35a4b7b1e61729cc737d99d3ef7262014606a69276f035ca9c96a4be8c"
+    }
+  ]
+}
