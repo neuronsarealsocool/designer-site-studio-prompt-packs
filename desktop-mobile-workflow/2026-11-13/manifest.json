@@ -1,0 +1,27 @@
+{
+  "title": "The Visual Story Method - Incomplete Prompt - Watch YouTube Video First",
+  "snapshot_date": "2026-11-13",
+  "kind": "owner supplied name, image and repository correction",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 398,
+      "sha256": "307c39634d7ebf4f11b4166492acece8089cfca9b68c3d769d5d3e1cc2e52c64"
+    },
+    {
+      "path": "media/4eadb38b5ee20b.png",
+      "bytes": 1144774,
+      "sha256": "4eadb38b5ee20b1c91c47d05a290b0cc6fe6dc11d60ec4885283fad13f26838b"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 6597,
+      "sha256": "e1a294432b8ae0182c481625877341d5257ae8350606876856363b0030ccb4a1"
+    },
+    {
+      "path": "references.json",
+      "bytes": 282,
+      "sha256": "a4c730793061e7d800e159370041ab2b823fbd0598dc18e1bb1c9593119aba4e"
+    }
+  ]
+}
