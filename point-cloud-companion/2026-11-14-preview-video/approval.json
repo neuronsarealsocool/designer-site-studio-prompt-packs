@@ -1,0 +1,22 @@
+{
+  "authorization": "User supplied this exact video and requested playback in both Point-cloud companion previews.",
+  "date": "2026-11-14",
+  "original_sha256": "efde4f83238a9d611c4631622fd0b29440c83022e5c1fe18de3eff7d8dcfd7be",
+  "delivery": "H.264 video stream retained without re-encoding; faststart container, no audio; poster is the actual first frame.",
+  "published_assets": [
+    {
+      "id": "reference-preview-loop",
+      "role": "reference preview loop",
+      "url": "https://lapis-slate-xvar.here.now/library/point-cloud-companion/media/411ddff143bbe1.mp4",
+      "bytes": 4023392,
+      "sha256": "411ddff143bbe134bdc15f0cf2fa696413d51c691e7c0d8b6509b39c83be530e"
+    },
+    {
+      "id": "reference-preview-poster",
+      "role": "reference preview poster",
+      "url": "https://lapis-slate-xvar.here.now/library/point-cloud-companion/media/16d04525efd0ca.jpg",
+      "bytes": 99111,
+      "sha256": "16d04525efd0ca910ac55404dcbaee83925321abd5eb184a1c3cdf8f1a8c6333"
+    }
+  ]
+}

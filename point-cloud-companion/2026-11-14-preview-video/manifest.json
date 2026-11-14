@@ -1,0 +1,38 @@
+{
+  "title": "Point-cloud companion",
+  "snapshot_date": "2026-11-14",
+  "kind": "approved supplied library preview clip",
+  "prior_model_snapshot_retained": true,
+  "files": [
+    {
+      "path": "approval.json",
+      "bytes": 999,
+      "sha256": "ed153ebfb4cec76d1fe912b684ee961497747bcf6315a8e90469fcf9300310e1"
+    },
+    {
+      "path": "assets.json",
+      "bytes": 1641,
+      "sha256": "e6831d15ed7d4adc97e121f2e6ba0ee68a24d896d454c46a2cb910447360c8d7"
+    },
+    {
+      "path": "catalog-entry.json",
+      "bytes": 1345,
+      "sha256": "51eb4cd848d6970f6951331b5ab8a64e064d8faf0894f2eda1e46d7c86941d13"
+    },
+    {
+      "path": "poster.jpg",
+      "bytes": 99111,
+      "sha256": "16d04525efd0ca910ac55404dcbaee83925321abd5eb184a1c3cdf8f1a8c6333"
+    },
+    {
+      "path": "preview.mp4",
+      "bytes": 4023392,
+      "sha256": "411ddff143bbe134bdc15f0cf2fa696413d51c691e7c0d8b6509b39c83be530e"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 40578,
+      "sha256": "671e208e2da241ec84a7e8bb48941afe6f8a2eb7491d0a95686f5d0d76cf2d5c"
+    }
+  ]
+}
