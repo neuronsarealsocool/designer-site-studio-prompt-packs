@@ -1,0 +1,23 @@
+{
+  "title": "The Visual Story Method - Not Actually A Website - Watch YouTube Video First",
+  "snapshot_date": "2026-11-14",
+  "kind": "pack title correction only",
+  "media_snapshot": "2026-11-13",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 403,
+      "sha256": "f77b898d44b595bb22b4ceb1a7f166ae754fdc3bf354ed467f4601476b40471d"
+    },
+    {
+      "path": "catalog-entry.json",
+      "bytes": 1443,
+      "sha256": "2cc1d674a5b61f05da10d1996d72099950d53d47634ce5b324f069aad35c8c2b"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 6197,
+      "sha256": "653c77fe6f7e9ce52c785ee237662884988b3fc2905465e87a3bb568f3c206bc"
+    }
+  ]
+}
