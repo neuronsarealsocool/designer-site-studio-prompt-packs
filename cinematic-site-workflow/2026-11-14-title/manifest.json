@@ -1,0 +1,23 @@
+{
+  "title": "Kopi Coffee - A Site Made By Giving Codex This YouTube Video Link",
+  "snapshot_date": "2026-11-14",
+  "kind": "pack title correction only",
+  "media_snapshot": "2026-11-10",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 403,
+      "sha256": "dd06f67e5bf02b42b4921357f85b1970af0a839d00c5859d596dfe34ee1405f0"
+    },
+    {
+      "path": "catalog-entry.json",
+      "bytes": 1434,
+      "sha256": "6e711722d5ebcf69387accd3d25734f35183d42a90a0ddab4c504fb3c45e7a37"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 6729,
+      "sha256": "a454ca1cfd279da8c696d52693d6acb0c63ddd92b0a9fea15cd649b5b452bfa7"
+    }
+  ]
+}

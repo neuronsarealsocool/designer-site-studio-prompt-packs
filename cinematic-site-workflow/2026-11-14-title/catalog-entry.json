@@ -1,0 +1,34 @@
+{
+  "id": "cinematic-site-workflow",
+  "title": "Kopi Coffee - A Site Made By Giving Codex This YouTube Video Link",
+  "description": "Build a high-end responsive website around the actual business and visitor action. Use the following planning and implementation method within the chosen project.",
+  "index": "references/packs/cinematic-site-workflow.md",
+  "use_modes": [
+    "verbatim",
+    "adapted",
+    "hybrid"
+  ],
+  "distribution": "authored working prompt and hosted media manifest; required notices retained",
+  "sources": [
+    {
+      "type": "working-prompt",
+      "url": "https://lapis-slate-xvar.here.now/library/cinematic-site-workflow/prompt.md"
+    },
+    {
+      "type": "media-manifest",
+      "url": "https://lapis-slate-xvar.here.now/library/cinematic-site-workflow/assets.json"
+    },
+    {
+      "type": "youtube",
+      "url": "https://www.youtube.com/watch?v=dn6MDl86fRY",
+      "label": "Watch on YouTube"
+    }
+  ],
+  "media_publication_approval": "required in chat for new/selected media; explicit approval persists for unchanged assets",
+  "platform_default": "existing or user-selected stack; otherwise a suitable responsive frontend",
+  "wordpress": "optional",
+  "provider": "Replicate for new generated media",
+  "media_count": 1,
+  "asset_manifest": "assets/manifests/cinematic-site-workflow.json",
+  "asset_base_url": "https://lapis-slate-xvar.here.now/library/cinematic-site-workflow/media/"
+}
