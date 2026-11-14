@@ -1,0 +1,32 @@
+{
+  "title": "Alder & Form - A Site Made By Giving Codex This YouTube Video Link",
+  "snapshot_date": "2026-11-14",
+  "kind": "Alder & Form metadata and static screenshot correction",
+  "files": [
+    {
+      "path": "approval.json",
+      "bytes": 256,
+      "sha256": "8cf49d6e0040ffd413a457a9f9ca0333147ae4e26e4937f55791c860b030c80f"
+    },
+    {
+      "path": "assets.json",
+      "bytes": 527,
+      "sha256": "6e691f5e2b476a2eddd840c34f5220c2591e2fed97e65e7345e59d438548096e"
+    },
+    {
+      "path": "catalog-entry.json",
+      "bytes": 1595,
+      "sha256": "266752744f5931f9da8ae9dd44f3962ff77754a4e5e69b5dfb2e97d1c2fc6704"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 8638,
+      "sha256": "d5af722b84d9fe290a02407a1c72451683ff24da4dbb41105781431dd2383a86"
+    },
+    {
+      "path": "site-screenshot.png",
+      "bytes": 131396,
+      "sha256": "ec9d5784faf096ac60ce02ddea8a9228462e5ad3ca75b9e2345d883cc7d6cc7a"
+    }
+  ]
+}
