@@ -1,0 +1,27 @@
+{
+  "snapshot_date": "2026-11-19",
+  "pack": "rainy-harbour-penthouse",
+  "kind": "Neutral working prompt, verified hosted-asset map, original-quality restoration bytes and Inter font license.",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 2362,
+      "sha256": "b3d6eda94880d31e9d3571310b23b961e63e566c61f34077b1d401278a4a7b7d"
+    },
+    {
+      "path": "inter-OFL.txt",
+      "bytes": 4377,
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 8562,
+      "sha256": "c60a70b15fcdfcc37dde77539ca9db1faa31abc1e459de10895c0251050cd98a"
+    },
+    {
+      "path": "resources.zip",
+      "bytes": 18246799,
+      "sha256": "f68ed2556367049f79b099bff1a47a38f6405826e8193c0c3aa9f286bd12fb93"
+    }
+  ]
+}
