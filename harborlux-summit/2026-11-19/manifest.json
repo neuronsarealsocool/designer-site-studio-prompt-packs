@@ -1,0 +1,27 @@
+{
+  "snapshot_date": "2026-11-19",
+  "pack": "harborlux-summit",
+  "scope": "Restoration archive, original brief, rewritten working prompt and original URL map. Site and public pack link to the original hosts.",
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 3068,
+      "sha256": "a84e9394851d0d4d67caead36495a645bbc11ed1f55918dd3f3b1ff88e718cdb"
+    },
+    {
+      "path": "original-brief.txt",
+      "bytes": 15522,
+      "sha256": "086f0251fe8d3d4ad0aefe684d2e46469ad894ba9c59587d34bc7ec1e87e7005"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 9075,
+      "sha256": "e9bdcbd68c8428b69287c96ff5fad791834b0a18333fcfe7dd3589f0fcd11694"
+    },
+    {
+      "path": "resources.zip",
+      "bytes": 18246799,
+      "sha256": "f68ed2556367049f79b099bff1a47a38f6405826e8193c0c3aa9f286bd12fb93"
+    }
+  ]
+}
