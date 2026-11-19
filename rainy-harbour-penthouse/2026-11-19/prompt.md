@@ -32,7 +32,7 @@ Stack these planes in paint order:
 3. The cutout skyline. Pivot at 50% 45%. Its highest towers reach about 33% of stage height, with the main skyline at 45%.
 4. The balcony and figure, pivoting at bottom centre. Behind the cutout, fit glass between the posts at left 5.2%, right 4.1%, top 57.9%, height 25.4%. Blend rgba(190,200,255,.10), rgba(150,160,230,.05) at 60%, and rgba(120,130,210,.08) down the glass. Add a 1px white highlight at 18% opacity, 1.2px backdrop blur and 1.05 saturation. The figure’s crown is at 35.9%.
 
-Centre the headline in the visible viewport. Measure the tracked word at 100px in its actual font. Calculate a font size that fits 62.5% of the stage width, 92% of the viewport width and the vertical clearance above its baseline. For the height limit, reserve 3.5vh beneath the nav and divide the remaining distance to the baseline by .88. Use the smallest limit. Measure “Harbour” after the font loads and fit the full word at 1440 × 900. Place the actual text baseline at 43% of the stage height, or 36.2% where height exceeds width × 1.2. Put the kicker at baseline minus .727em minus .02em, set its font to .118 of the headline size, and shift it .1 kicker-em left of centre. On desktop the figure interrupts the lower middle of the word. In portrait its head just meets the base of the word.
+Centre the headline in the visible viewport. Measure the tracked word at 100px in its actual font. Calculate a font size that fits 62.5% of the stage width, 92% of the viewport width and the vertical clearance above its baseline. For the height limit, reserve 3.5vh beneath the nav and divide the remaining distance to the baseline by .88. Use the smallest limit. Measure “Harbour” after the font loads and fit the full word at 1440 × 900. Place the actual text baseline at 43% of the stage height, or 36.2% where height exceeds width × 1.2. Put the kicker at baseline minus .88em, set its font to .118 of the headline size, and shift it .1 kicker-em left of centre. On desktop the figure interrupts the lower middle of the word. In portrait its head just meets the base of the word.
 
 ## Viewport navigation
 
@@ -53,7 +53,7 @@ Cover the hero with a viewport-filling aerial still and a matching tilt video, t
 | 2.45–2.95 | Dissolve the entire opening into the aligned skyline with cubic-bezier(.45,0,.55,1). |
 | 2.45–2.75 | Fade the nav up from −6px, ease-out. |
 | 2.45–3.10 | Fade the kicker upward from .5em with cubic-bezier(.2,.65,.3,1). |
-| 2.45 + .054 × letter index | Reveal each letter from .14em below, fading to full white over .70s with the kicker easing. |
+| 2.45 + .054 × letter index | Reveal each letter from .14em below, fading to full white over .70s with the kicker easing. Index the seven letters from 0 to 6, so the final reveal ends at 3.474s. |
 | 2.90–3.70 | Ease the top shade to full opacity. |
 | 2.90–4.30 | Lift the sky 1.5% with cubic-bezier(.45,0,.35,1) and hold. |
 | 2.90–4.30 / 4.60–6.90 | Lift the city 4% with cubic-bezier(.45,0,.3,1), hold, then ease back with cubic-bezier(.45,0,.55,1). |
