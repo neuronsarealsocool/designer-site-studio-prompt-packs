@@ -35,3 +35,6 @@ Point-cloud companion corrected snapshot: `point-cloud-companion/2026-11-12`, ex
 ## Agentic AI skill
 
 Use these references with the [Designer Site Studio agentic AI skill](https://github.com/neuronsarealsocool/designer-site-studio-agentic-ai-skill). Repository visibility is public; required third-party notices and media rights still apply.
+
+
+Clothes Rack Showroom: `clothes-rack-showroom/2026-11-20`, independently authored full build prompt, approved corrected showroom still, portable source archive, and required source/Three.js/Outfit notices. The original reference video is not redistributed.

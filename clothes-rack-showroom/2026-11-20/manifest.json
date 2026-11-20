@@ -1,0 +1,39 @@
+{
+  "title": "Clothes Rack Showroom",
+  "snapshot_date": "2026-11-20",
+  "kind": "portable independent procedural showroom pack",
+  "live_example": "https://ruddo-clay-showroom.neuronsarealsocool.chatgpt.site/",
+  "original_reference_video_included": false,
+  "files": [
+    {
+      "path": "assets.json",
+      "bytes": 999,
+      "sha256": "4d852f843e2fccb4e668b877984c653e6c8a83e2d4fa0e097e961892750c447c"
+    },
+    {
+      "path": "catalog-entry.json",
+      "bytes": 1555,
+      "sha256": "ad884117b26e7dfff4f1417232690a3f39d6deef63164b6d6c74aeeca982bf1a"
+    },
+    {
+      "path": "notices.txt",
+      "bytes": 6672,
+      "sha256": "ad497689960f51e97a290b41a9fd194b68ac69a0e70c98c122e94c054c7cf58e"
+    },
+    {
+      "path": "preview.jpg",
+      "bytes": 50719,
+      "sha256": "b89477202a0c6fb98d2b3fa4af7453729a2bcb8cf6f35a9c0240e62390c79870"
+    },
+    {
+      "path": "prompt.md",
+      "bytes": 19460,
+      "sha256": "6e15869c47b2540ba8c7cf09092dfb99b8ae5c67e4ad87e3702093625423a41a"
+    },
+    {
+      "path": "source.zip",
+      "bytes": 311256,
+      "sha256": "763513fcde284d0a77ae3d66117b90d32a1921bdb718581df2fe04e51fe7ab1c"
+    }
+  ]
+}
