@@ -1,6 +1,6 @@
-# Website reference working backups
+# Designer Site Studio Prompt Packs
 
-Private independent working copies with neutral pack names, updated prompts and
+Public independent working copies with neutral pack names, updated prompts and
 user-hosted media URLs. Full documents, optional code archives, reference evidence
 and media are retained. Required license notices and unchanged media content may
 identify their origins. Earlier snapshots remain in Git history; this update does
@@ -27,6 +27,11 @@ Recovered from the chat audit on 11 November 2026:
 - Bird species atlas: `bird-species-atlas/2026-11-11`, 4 public media/support files.
 - Fashion video commerce: `fashion-video-commerce/2026-11-11`, 0 public media/support files.
 
-Original implementation detail is kept in neutral adapted source documents. Optional unused media and the exact point-cloud geometry remain private. The historical fashion video was unavailable; its brief is retained without claiming recovered video bytes.
+Original implementation detail is kept in neutral adapted source documents. Historical snapshots retain optional media and earlier point-cloud geometry for recovery. The historical fashion video was unavailable; its brief is retained without claiming recovered video bytes.
 
 Point-cloud companion corrected snapshot: `point-cloud-companion/2026-11-12`, expanded full working specification, three approved assets including the exact geometry, and its required notice. The earlier snapshots remain available for recovery.
+
+
+## Agentic AI skill
+
+Use these references with the [Designer Site Studio agentic AI skill](https://github.com/neuronsarealsocool/designer-site-studio-agentic-ai-skill). Repository visibility is public; required third-party notices and media rights still apply.
